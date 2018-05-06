@@ -1,0 +1,21 @@
+.container {
+    max-width: 80%;
+}
+
+   .navbar-right .dropdown-menu {
+      right: 0;
+      left: auto;
+    }
+   .navbar-right .dropdown-menu-left {
+     right: auto;
+     left: 0;
+
+     float: left !important;
+   }
+  .navbar-right {
+    float: right !important;
+    margin-right: -15px;
+    }
+   .navbar-right ~ .navbar-right {
+     margin-right: 0;
+   }
