@@ -1,4 +1,4 @@
-@extends('index')
+@extends('PaginaWeb/index')
 
 @section('contenido')
 	<div class="container-fluid">
