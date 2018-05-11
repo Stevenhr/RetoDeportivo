@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-9nkB73MkhCaHgW6bdX2EbWnwXl8FUs1fTnR1UKUuic9Zqs/3u9VunCE/0hleKeUs" crossorigin="anonymous">
-  <style type="text/css">
-      
-      
-
-  </style>
+  <!-- Titulo de pestaña la Pagina -->
+  <title>La Polla Del Deporte</title>
+  <!-- Importaciones de referencia -->
+    <!-- Codigo CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-9nkB73MkhCaHgW6bdX2EbWnwXl8FUs1fTnR1UKUuic9Zqs/3u9VunCE/0hleKeUs" crossorigin="anonymous">
 </head>
 <body>
 
-  <!--Cuerpo de Pagina-->
+<!-- Menú de Pagina -->
 <div class="container-fluid">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">SRD</a>
+    <a class="navbar-brand" href="inicio">SRD</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,37 +20,49 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="inicio">Inicio <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Como Funciona</a>
-          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-            <a class="dropdown-item" href="#">Reglas del Juego</a>
-            <a class="dropdown-item" href="#">Contáctenos</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separador</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="como_funciona">Como Funciona</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Reglas del Juego</a>
+          <a class="nav-link text-white" href="reglas_del_juego">Reglas del Juego</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Contáctenos</a>
+          <a class="nav-link text-white" href="contactanos">Contáctenos</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#modalRegistro">Solicitud de Registro</button>
+        <a class="btn btn-success my-2 my-sm-0 text-white" data-toggle="modal" data-target="#modalRegistro">Solicitud de Registro</a>
         &nbsp;&nbsp;
-        <button class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#modalInicioSesion">Iniciar Sesión</button>
+        <a class="btn btn-success my-2 my-sm-0 text-white" data-toggle="modal" data-target="#modalInicioSesion">Iniciar Sesión</a>
       </form>
     </div>
   </nav>
 </div>
 
+<!-- Mensajes de Error en el Modal -->
+<div class="container-fluid">
+  @if($errors->any())
+    <br>
+    <div class="alert alert-dismissible alert-danger">
+      <strong>Oh!, Parece que has ingresado datos incorrectos!</strong>
+      @foreach($errors->all() as $error)
+      <a class="alert-link"><div>* {{$error}}</div></a>
+      @endforeach
+    </div>
+  @endif
+  <br>
+</div>
+
+<!-- Contenido del cuerpo de la Pagina -->
+
 @yield('contenido')
 
-<div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modales -->
+  <!--Modal Solicitud de Registro -->
+  <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -62,98 +72,92 @@
           </button>
         </div>
         <div class="modal-body">
-
-          <div class="container">
-        <div class="row">
-          <div class="col">
-
-              <form>
+          {!! Form::open(['url' => 'solicitud_registro']) !!}
+            {{ csrf_field() }}
+            <div class="container">
+          <div class="row">
+            <div class="col">
             <div class="form-group">
-              <label for="exampleInputPassword1">Nombres</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nombres">
+              <label for="exampleInputPassword1"><a class="text-danger">*</a>Nombres</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="nombres" placeholder="Nombres">
             </div>
-          </form>
-          </div>
-          <div class="col">
-            <form>
+            </div>
+            <div class="col">
             <div class="form-group">
-              <label for="exampleInputPassword1">Apellidos</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Apellidos">
+              <label for="exampleInputPassword1"><a class="text-danger">*</a>Apellidos</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="apellidos" placeholder="Apellidos">
             </div>
-          </form>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <form>
+          <div class="row">
+            <div class="col">
+              
             <div class="form-group">
-              <label for="exampleInputPassword1">Edad</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Edad">
+              <label for="exampleInputPassword1"><a class="text-danger">*</a>Edad</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="edad" placeholder="Edad" min="10" max="90">
             </div>
-          </form>
-          </div>
-          <div class="col">
-            <form>
+            
+            </div>
+            <div class="col">
+              
             <div class="form-group">
-              <label for="exampleInputPassword1">Telefono</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Telefono">
+              <label for="exampleInputPassword1"><a class="text-danger">*</a>Telefono</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="telefono" placeholder="Telefono">
             </div>
-          </form>
+            
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <form>
+          <div class="row">
+            <div class="col">
+              
             <div class="form-group">
-              <label for="exampleInputPassword1">Dirección Residencial</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Dirección Residencial">
+              <label for="exampleInputPassword1"><a class="text-danger">*</a>Dirección Residencial</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="direccionResidencial" placeholder="Dirección Residencial">
             </div>
-          </form>
+            
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <form>
+          <div class="row">
+            <div class="col">
+              
             <div class="form-group">
-              <label for="exampleInputPassword1">Correo Electronico</label>
-              <input type="email" class="form-control" id="exampleInputPassword1" placeholder="nombre@organizacion.tipo">
+              <label for="exampleInputPassword1"><a class="text-danger">*</a>Correo Electronico</label>
+              <input type="email" class="form-control" id="exampleInputPassword1" name="correoElectronico" placeholder="nombre@organizacion.tipo">
             </div>
-          </form>
+            
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <form>
+          <div class="row">
+            <div class="col">
+              
             <div class="form-group">
-              <label for="exampleInputPassword1">Contraseña</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+              <label for="exampleInputPassword1"><a class="text-danger">*</a>Contraseña</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="contraseña" placeholder="Contraseña">
             </div>
-          </form>
-          </div>
-          <div class="col">
-            <form>
+            
+            </div>
+           <div class="col">
+              
             <div class="form-group">
-              <label for="exampleInputPassword1">Confirmar Contraseña</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirmar Contraseña">
+              <label for="exampleInputPassword1"><a class="text-danger">*</a>Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="confirmarContraseña" placeholder="Confirmar Contraseña">
             </div>
-          </form>
-          </div>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Confirmar Registro</label>
-        </div>
+      
+             </div>
+         </div>
+        /<a class="text-danger">*</a>Recuerde que todos los campos del registro son obligatorios.<a class="text-danger">*</a>/
       </div>
+        
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Registrarse</button>
+          <button type="submit" class="btn btn-primary">Registrarse</button>
+          {!! Form::close() !!}
         </div>
       </div>
     </div>
   </div>
-
-
+  <!-- Modal Inicio de Sesión -->
   <div class="modal fade" id="modalInicioSesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -164,13 +168,14 @@
           </button>
         </div>
         <div class="modal-body">
-          
+          {!! Form::open(['url' => 'inicio_de_sesion']) !!}
+          {{ csrf_field() }}
             <div class="container">
           <div class="row">
             <div class="col">
             <div class="form-group">
-              <label for="exampleInputPassword1">Correo Electronico</label>
-              <input type="email" class="form-control" id="exampleInputPassword1" name="correoElectronico2" placeholder="nombre@organizacion.tipo">
+              <label for="exampleInputPassword1">Usuario</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="usuario" placeholder="ejemplo123">
             </div>
             </div>
             
@@ -180,7 +185,7 @@
               
             <div class="form-group">
               <label for="exampleInputPassword1">Contraseña</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" name="contraseña2" placeholder="Contraseña">
+              <input type="password" class="form-control" id="exampleInputPassword1" name="contraseña" placeholder="Contraseña">
             </div>
             
             </div>
@@ -193,7 +198,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-          
+          {!! Form::close() !!}
         </div>
       </div>
     </div>

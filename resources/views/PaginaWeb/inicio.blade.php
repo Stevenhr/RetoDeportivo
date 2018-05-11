@@ -31,33 +31,33 @@
 		<br>
 		<div class="jumbotron">
 		  <h1 class="display-3">Bienvenidos!!</h1>
-		  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+		  <p class="lead">Este es un Sistema de Retos Deportivos, donde el principal objetivo, es realizar el registro de los resultados de los eventos creados en el sistema, esto con el fin de sumar puntos por cada acierto, el que mayor numero de puntos sume al finalizar la competencia será el ganador de dicho evento.</p>
 		  <hr class="my-4">
 		  <div class="container">
 		  <div class="row">
 		    <div class="col-sm">
-		      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-				  <div class="card-header">Header</div>
+		      <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+				  <div class="card-header">⚽ La Polla del Futbol ⚽</div>
 				  <div class="card-body">
-				    <h4 class="card-title">Primary card title</h4>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <h4 class="card-title">Grita: ¡¡GOOOOOL!!</h4>
+				    <p class="card-text">Puedes participar en diferentes eventos de la polla del futbol, pide tu solicitud de registro para que nunca dejes de gritar ¡¡¡GOOOOL!!!</p>
 				  </div>
 				</div>
 		    </div>
 		    <div class="col-sm">
 		      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-				  <div class="card-header">Header</div>
+				  <div class="card-header">PRUEBA</div>
 				  <div class="card-body">
-				    <h4 class="card-title">Primary card title</h4>
+				    <h4 class="card-title">EJEMPLO</h4>
 				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				  </div>
 				</div>
 		    </div>
 		    <div class="col-sm">
-		      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-				  <div class="card-header">Header</div>
+		      <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+				  <div class="card-header">PRUEBA</div>
 				  <div class="card-body">
-				    <h4 class="card-title">Primary card title</h4>
+				    <h4 class="card-title">Ejemplo 2</h4>
 				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				  </div>
 				</div>
