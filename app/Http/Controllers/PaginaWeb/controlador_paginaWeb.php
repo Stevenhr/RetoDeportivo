@@ -8,7 +8,9 @@ namespace App\Http\Controllers\PaginaWeb;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \Validator;
-use App\modelo_acceso;
+use \Session;
+use App\Modelo_Tabla_Accesos;
+use App\Modelo_Tabla_Actividades_Accesos;
 
 /*
  * Clase de Controlador de Pagina Web.
@@ -47,55 +49,54 @@ class controlador_paginaWeb extends Controller
             return redirect('/')->withErrors($loginV->errors());
         }else{
                 
-                $correoEvaluarLogin=$request->usuario;
-                $contrasenaEvaluarLogin=$request->contraseña;
-                $econtradoCorreoIgual=false;
-                $econtradoContraseniaIgual=false;
-            if($correoEvaluarLogin=="adminsec@jimail.com" && $contrasenaEvaluarLogin=="admin99"){
-                $loginDeUsuario[]=array(
+            $usuarioEvaluarLogin=$request->usuario;
+            $contrasenaEvaluarLogin=$request->contraseña;
+            $encontradoUsuarioIgual=false;
+            $encontradoContraseniaIgual=false;
+            $usuarioExistente = Modelo_Tabla_Accesos::where('vc_usuario',$usuarioEvaluarLogin);
+            $encontradoUsuarioExisteneLogin = $usuarioExistente->count();
+            $usuarioPassExistente = Modelo_Tabla_Accesos::where('vc_contrasena',$contrasenaEvaluarLogin);
+            $encontradoPassExisteneLogin = $usuarioPassExistente->count();
 
-                    'usuario'=>$request->usuario,
-                    'contraseña'=>$request->contraseña,
+            if($encontradoUsuarioExisteneLogin>0){
+                $encontradoUsuarioIgual=true;
+            }
+            if($encontradoPassExisteneLogin>0){
+                $encontradoContraseniaIgual=true;
+            }
 
-                );
+            if($encontradoUsuarioIgual==true){
 
-                Session::put('loginDeUsuario',$loginDeUsuario);
-                return view('registro_y_login\admin');
+                if($encontradoContraseniaIgual==true){
+                    $usuarioExistenteDatos=$usuarioExistente->get();
+                    $actividadesDisponibles=Modelo_Tabla_Actividades_Accesos::where('acceso_tbl_personas_i_pk_id',$usuarioExistenteDatos[0]['tbl_personas_i_pk_id']);
+                    $actividadesDisponiblesDatos=$actividadesDisponibles->get();
+                    $cantidadActividadesDisponibles=$actividadesDisponiblesDatos->count();
+                    if($cantidadActividadesDisponibles>0){
+                        Session::put('Session_Actividades_Disponibles_Login',$actividadesDisponiblesDatos);
+                    }
+                    return redirect('/usuarioIniciado');
+                }else{
+                    $mensajeLogin="La contraseña es incorrecta.";
+                    
+                    return redirect('/')->withErrors($mensajeLogin);
+
+                }
+                
             }else{
 
-                
-            
-                $usuarioCorreoExistente = modelo_acceso::where('vc_usuario',$correoEvaluarLogin);
-                $encontradoCorreoExisteneLogin = $usuarioCorreoExistente->count();
-                $usuarioPassExistente = modelo_acceso::where('vc_contrasena',$contrasenaEvaluarLogin);
-                $encontradoPassExisteneLogin = $usuarioPassExistente->count();
-
-                if($encontradoCorreoExisteneLogin>0){
-                    $econtradoCorreoIgual=true;
-                }
-                if($encontradoPassExisteneLogin>0){
-                    $econtradoContraseniaIgual=true;
-                }
-
-                if($econtradoCorreoIgual==true){
-
-                    if($econtradoContraseniaIgual==true){
-                        return redirect('/usuarioIniciado');
-                    }else{
-                        $mensajeLogin="La contraseña es incorrecta.";
-                        
-                        return redirect('/')->withErrors($mensajeLogin);
-
-                    }
+                $mensajeLogin="El usuario no se encuentra registrado.";
                     
-                }else{
-
-                    $mensajeLogin="El correo no se encuentra registrado.";
-                        
-                        return redirect('/')->withErrors($mensajeLogin);
-                }
+                    return redirect('/')->withErrors($mensajeLogin);
             }
+            
         }
+
+    }
+    public function cerrarSesion(request $request){
+
+        Session::forget('Session_Actividades_Disponibles_Login');
+        return redirect('/');
 
     }
 }

@@ -34,3 +34,4 @@ Route::get('/usuarioIniciado', function () {
 
 Route::post('/inicio_de_sesion','PaginaWeb\controlador_paginaWeb@inicioSesion');
 Route::post('/solicitud_registro','PaginaWeb\controlador_paginaWeb@solicitudRegistro');
+Route::post('/cerrar_sesion','PaginaWeb\controlador_paginaWeb@cerrarSesion');
