@@ -68,6 +68,9 @@ class controlador_paginaWeb extends Controller
             if($encontradoUsuarioIgual==true){
 
                 if($encontradoContraseniaIgual==true){
+                    if(Session::has('Session_Actividades_Disponibles_Login')){
+                        Session::forget('Session_Actividades_Disponibles_Login');
+                    }
                     $usuarioExistenteDatos=$usuarioExistente->get();
                     $actividadesDisponibles=Modelo_Tabla_Actividades_Accesos::where('acceso_tbl_personas_i_pk_id',$usuarioExistenteDatos[0]['tbl_personas_i_pk_id']);
                     $actividadesDisponiblesDatos=$actividadesDisponibles->get();
