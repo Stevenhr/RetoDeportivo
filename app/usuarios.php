@@ -8,8 +8,8 @@ class usuarios extends Model{
 	protected $table = 'tbl_personas';
 	protected $primaryKey='i_pk_id';
 	public $timestamps = false;
-	public function pivot(){
-		return $this->hasMany('App\tbl_pivot_organizacion_persona','tbl_personas_i_fk_id');
+	public function organizaciones(){
+		return $this->belongsToMany('App\organizaciones','tbl_pivot_organizacion_persona','i_pk_id','i_pk_id');
 	}
 	//RELACIONES DE OTROS MODELOS (SIN DESARROLLAR)
 	/*public function acceso(){
