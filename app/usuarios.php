@@ -11,8 +11,7 @@ class usuarios extends Model{
 	public function organizaciones(){
 		return $this->belongsToMany('App\organizaciones','tbl_pivot_organizacion_persona','i_pk_id','i_pk_id');
 	}
-	//RELACIONES DE OTROS MODELOS (SIN DESARROLLAR)
-	/*public function acceso(){
+	public function acceso(){
 		return $this->hasOne('App\tbl_acceso','tbl_personas_i_fk_id');
 	}
 	public function sexo(){
@@ -21,7 +20,8 @@ class usuarios extends Model{
 	public function tipos_documento(){
 		return $this->belongsTo('App\tbl_tipos_documento','i_pk_id');
 	}
-	public function jugador(){
+	//RELACIONES DE OTROS GRUPOS PARA USUARIOS (SIN DESARROLLAR)
+	/*public function jugador(){
 		return $this->hasOne('App\tbl_jugador','i_pk_id');
 	}*/
 }
