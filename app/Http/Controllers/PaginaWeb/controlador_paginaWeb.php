@@ -9,8 +9,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \Validator;
 use \Session;
-use App\Modelo_Tabla_Accesos;
-use App\Modelo_Tabla_Actividades_Accesos;
+use App\tbl_acceso;
+//use App\Modelo_Tabla_Actividades_Accesos;
+//use App\Modelo_Tabla_Actividades;
 
 /*
  * Clase de Controlador de Pagina Web.
@@ -32,7 +33,7 @@ class controlador_paginaWeb extends Controller
 
     public function inicioSesion(request $request){
 
-    	$loginV=Validator::make($request->all(),
+        $loginV=Validator::make($request->all(),
 
             [
 
@@ -53,9 +54,9 @@ class controlador_paginaWeb extends Controller
             $contrasenaEvaluarLogin=$request->contraseña;
             $encontradoUsuarioIgual=false;
             $encontradoContraseniaIgual=false;
-            $usuarioExistente = Modelo_Tabla_Accesos::where('vc_usuario',$usuarioEvaluarLogin);
+            $usuarioExistente = tbl_acceso::where('vc_usuario',$usuarioEvaluarLogin);
             $encontradoUsuarioExisteneLogin = $usuarioExistente->count();
-            $usuarioPassExistente = Modelo_Tabla_Accesos::where('vc_contrasena',$contrasenaEvaluarLogin);
+            $usuarioPassExistente = tbl_acceso::where('vc_contrasena',$contrasenaEvaluarLogin);
             $encontradoPassExisteneLogin = $usuarioPassExistente->count();
 
             if($encontradoUsuarioExisteneLogin>0){
@@ -68,16 +69,24 @@ class controlador_paginaWeb extends Controller
             if($encontradoUsuarioIgual==true){
 
                 if($encontradoContraseniaIgual==true){
-                    if(Session::has('Session_Actividades_Disponibles_Login')){
-                        Session::forget('Session_Actividades_Disponibles_Login');
+                    
+                    if(Session::has('Id_Usuario')){
+                        Session::forget('Id_Usuario');
                     }
+                    /*if(Session::has('Actividades_Disponibles_Login')){
+                        Session::forget('Actividades_Disponibles_Login');
+                    }*/
                     $usuarioExistenteDatos=$usuarioExistente->get();
-                    $actividadesDisponibles=Modelo_Tabla_Actividades_Accesos::where('acceso_tbl_personas_i_pk_id',$usuarioExistenteDatos[0]['tbl_personas_i_pk_id']);
-                    $actividadesDisponiblesDatos=$actividadesDisponibles->get();
+                    Session::put('Id_Usuario',$usuarioExistenteDatos[0]['tbl_personas_i_pk_id']);
+                    /*$actividadesDisponibles=tbl_acceso::find($usuarioExistenteDatos[0]['tbl_personas_i_pk_id'])->actividades()->get();
+                    $actividadesDisponibles2=Modelo_Tabla_Actividades_Accesos::find($actividadesDisponibles[0]['tbl_actividades_i_pk_id'])->actividades()->get();
+                    $actividadesDisponiblesDatos=$actividadesDisponibles;
                     $cantidadActividadesDisponibles=$actividadesDisponiblesDatos->count();
+                    
                     if($cantidadActividadesDisponibles>0){
-                        Session::put('Session_Actividades_Disponibles_Login',$actividadesDisponiblesDatos);
-                    }
+                        
+                        Session::put('Actividades_Disponibles_Login',$actividadesDisponiblesDatos);
+                    }*/
                     return redirect('/usuarioIniciado');
                 }else{
                     $mensajeLogin="La contraseña es incorrecta.";
@@ -97,8 +106,8 @@ class controlador_paginaWeb extends Controller
 
     }
     public function cerrarSesion(request $request){
-
-        Session::forget('Session_Actividades_Disponibles_Login');
+         Session::forget('Id_Usuario');
+        //Session::forget('Actividades_Disponibles_Login');
         return redirect('/');
 
     }
