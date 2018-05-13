@@ -10,3 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*Route::get('/fixture', function () {
+    return view('Resultados/Fixture');
+});*/
+Route::get('fixture','Resultado\resultadoController@resultadoPartidos');
+//Route::get('fixture','resultadoController@resultadosPartidos');
