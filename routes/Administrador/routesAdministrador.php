@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/eventos', function () {
+    return view('Administrador/eventos');
+});
+Route::post('agregarEvento','Administrador\controladorAdmin@agregarEvento');
