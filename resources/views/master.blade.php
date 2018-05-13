@@ -89,7 +89,9 @@
 
                 <ul class="navbar-nav navbar-right">
                   <li class="nav-item">
-                    <a class="nav-link" href="#" target="_blank">Cerrar Sesión</a>
+                    {!! Form::open(['url' => 'cerrar_sesion']) !!}
+                    <button class="btn btn-primary" type="submit">Cerrar Sesión</button> &nbsp;
+                    {!! Form::close() !!}
                   </li>
                 </ul>
                
