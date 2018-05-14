@@ -18,6 +18,5 @@
 		        <p class="card-text">Fecha de nacimiento: {{$jugadores->d_fechanacimiento}}</p>
 		</div>
 	</div>
-	  <!--hpña-->
 	
 @stop
