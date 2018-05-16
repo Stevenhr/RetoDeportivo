@@ -1,14 +1,13 @@
 @extends('master')
 
-@section('contenido')
+@section('content')
 	<div class="row">
 		<div class="col-md-8">
 			<br>
 			<h2>Listado de jugadores</h2>
 			<br>
-			<a href="create" class="btn btn-primary">Nuevo jugador</a>
+			<a href="{{URL::action('Palmare\jugadoresController@create')}}" class="btn btn-primary">Nuevo jugador</a>
 			<br><br>
-			@include('search')
 		</div>
 	</div>
 	<div class="row">
@@ -26,17 +25,17 @@
 					</thead>
 
 					<tbody>
-						@foreach ($jugadores as $datos)
+				@foreach ($jugadores as $datos)
 						<tr>
 							<td>{{ $datos->nombre }}</td>
-							<td>{{ $datos->i_altura }}</td>
+							<td>{{ $datos->i_altura }} cm</td>
 							<td>{{ $datos->vc_dorsal }}</td>
 							<td>{{ $datos->vc_posicion }}</td>
 							<td>{{ $datos->vc_lugarNacimiento }}</td>
 							<td>{{ $datos->d_fechanacimiento }}</td>
 							<td>
-								<a href="create" class="btn btn-primary">Editar</a>
-								<a href="{{URL::action('jugadoresController@show', $datos->i_pk_id)}}" class="btn btn-primary">Mostrar</a>
+								<a href="{{URL::action('Palmare\jugadoresController@edit', $datos->i_pk_id)}}" class="btn btn-primary">Editar</a>
+								<a href="{{URL::action('Palmare\jugadoresController@show', $datos->i_pk_id)}}" class="btn btn-primary">Mostrar</a>
 							</td>
 						</tr>
 						@endforeach

@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('contenido')
+@section('content')
 	
 	<br><br>
 

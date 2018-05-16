@@ -16,4 +16,9 @@ class PalmareJugador extends Model
     	'vc_anio',
     	'vc_equipo'
     ];
+
+    public function Jugador(){
+
+    	return $this->belongsTo('App\Persona', 'tbl_equipo_i_pk_id');
+    }
 }
