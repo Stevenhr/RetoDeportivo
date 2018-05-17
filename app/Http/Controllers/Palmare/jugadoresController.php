@@ -79,5 +79,9 @@ class jugadoresController extends Controller
 
             return Redirect::to('inicio');
         */
+    $jugador = Jugador::find($i_pk_id); 
+    $jugador->delete(); 
+ 
+    return view('destroy');  
     }
 }

@@ -38,6 +38,7 @@ hhkjhkjhkjhkjhkjh
 							<td>
 								<a href="create" class="btn btn-primary">Editar</a>
 								<a href="{{URL::action('jugadoresController@show', $datos->i_pk_id)}}" class="btn btn-primary">Mostrar</a>
+								<a href="{{URL::action('Palmare\jugadoresController@destroy', $datos->i_pk_id)}}" class="btn btn-primary">Eliminar</a> 
 							</td>
 						</tr>
 						@endforeach
