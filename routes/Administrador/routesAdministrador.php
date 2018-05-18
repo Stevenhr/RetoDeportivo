@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/dfssd', function () {
     return view('welcome');
 });
 Route::get('/eventos', function () {
