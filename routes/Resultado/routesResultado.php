@@ -22,3 +22,8 @@ Route::get('resultados','Resultado\resultadosController@partidosEvento');
 Route::post('RegistroResultados','Resultado\resultadosController@registroResultado');
 Route::post('ModificarResultados','Resultado\resultadosController@modificarResultado');
 Route::post('EliminarResultado','Resultado\resultadosController@eliminarResultado');
+
+Route::get('estadisticas','Resultado\estadisticasController@partidosEvento');
+Route::post('RegistroEstadisticas','Resultado\estadisticasController@agregarEstadisticas');
+Route::post('ModificarEstadisticas','Resultado\estadisticasController@modificarEstadisticas');
+Route::post('EliminarEstadisticas','Resultado\estadisticasController@eliminarEstadisticas');
