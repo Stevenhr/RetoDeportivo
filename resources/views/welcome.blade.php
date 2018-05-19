@@ -1,5 +1,5 @@
 @extends('master')                              
 
 @section('content') 
-@yield('eventos')
+@yield('contenido')
 @stop

@@ -8,6 +8,7 @@ class organizaciones extends Model{
 	protected $table = 'tbl_organizaciones';
 	protected $primaryKey='i_pk_id';
 	public $timestamps = false;
+	
 	public function evento(){
 		return $this->belongsTo('App\Evento','tbl_eventos_i_fk_id');
 	}

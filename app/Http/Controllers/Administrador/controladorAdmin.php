@@ -31,6 +31,8 @@ class controladorAdmin extends Controller{
         $evento['vc_logo'] = "public/storage/imagenes/".$file->getClientOriginalName();
         //SE GUARDA LA INFORMACION EN LA DB
         $evento->save();
+
+       // Session::put('eventosSession',);
 		return view('master');
 	}
 }
