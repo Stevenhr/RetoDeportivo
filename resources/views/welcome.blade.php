@@ -3,9 +3,9 @@
 @section('content') 
 
 	<?php 
-		if(Session::has('Session_Actividades_Disponibles_Login')){
+		if(Session::has('Actividades_Disponibles_Login')){
 
-			$actividadesDisponibles=Session::get('Session_Actividades_Disponibles_Login');
+			$actividadesDisponibles=Session::get('Actividades_Disponibles_Login');
 			$cantidadActividadesDisponibles=$actividadesDisponibles->count();
 			echo '<br><h1>ACTIVIDADES:</h1><br><br><h2>ESTADO 1: ACTIVADA<br>ESTADO 2: DESACTIVADA</h2><br><br>';
 			for ($i=0; $i < $cantidadActividadesDisponibles; $i++) { 

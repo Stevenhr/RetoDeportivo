@@ -13,7 +13,7 @@
 
 
 
-Route::get('/', function () {
+Route::get('/fgdfgdfg', function () {
     return view('welcome');
 });
 

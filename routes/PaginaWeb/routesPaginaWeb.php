@@ -29,7 +29,9 @@ Route::get('/contactanos', function () {
 Route::get('/usuarioIniciado', function () {
     return view('welcome');
 });
-
+Route::get('/vista', function () {
+    return view('vista');
+});
 
 
 Route::post('/inicio_de_sesion','PaginaWeb\controlador_paginaWeb@inicioSesion');

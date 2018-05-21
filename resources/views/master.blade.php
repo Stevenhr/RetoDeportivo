@@ -12,19 +12,21 @@
           <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
           <link rel="stylesheet" href="{{ asset('/css/jquery-ui.css') }}" media="screen">    
           <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}" media="screen">    
-          <link rel="stylesheet" href="{{ asset('/css/main.css') }}" media="screen">   
-         
-     
+          <link rel="stylesheet" href="{{ asset('/css/main.css') }}" media="screen">
+          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
               
 
           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
           
    
     
 
       <title>Reto deportivo</title>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
   </head>
 
   <body>
@@ -55,7 +57,7 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Palmare Deportivo</a>
                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-                      <a class="dropdown-item" href="crud">Actividad 1</a>
+                      <a class="dropdown-item" href="#">Actividad 1</a> 
                       <a class="dropdown-item" href="#">Actividad 2</a>
                       <a class="dropdown-item" href="#">Actividad 3</a>
                       <div class="dropdown-divider"></div>
@@ -77,7 +79,9 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes</a>
                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-                      <a class="dropdown-item" href="#">Actividad 1</a>
+                      {!! Form::open(['url' => 'tablas']) !!}
+                      <button class="dropdown-item" type="submit">Tablas</button>
+                      {!! Form::close() !!}
                       <a class="dropdown-item" href="#">Actividad 2</a>
                       <a class="dropdown-item" href="#">Actividad 3</a>
                       <div class="dropdown-divider"></div>
@@ -132,6 +136,50 @@
 
       </div>        
       <!-- FIN Contenedor panel principal -->
+      
+
+<script>
+  
+  $(document).ready( function () {
+    $('#table_id').DataTable( {
+            language: {
+                  "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/JTable_Trad.json",
+                  "decimal":        "",
+                  "emptyTable":     "No hay datos",
+                  "info":           "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                  "infoEmpty":      "Mostrando 0 a 0 de 0 registros",
+                  "infoFiltered":   "(Filtro de _MAX_ total registros)",
+                  "infoPostFix":    "",
+                  "thousands":      ",",
+                  "lengthMenu":     "Mostrar:&nbsp;  _MENU_  &nbsp;Registros",
+                  "loadingRecords": "Cargando...",
+                  "processing":     "Procesando...",
+                  "search":         "Buscar:",
+                  "zeroRecords":    "No se encontraron coincidencias",
+                  "paginate": {
+                      "first":      "Primero",
+                      "last":       "Ultimo",
+                      "next":       "Siguiente",
+                      "previous":   "Anterior"
+                  },
+                  "aria": {
+                      "sortAscending":  ": Activar orden de columna ascendente",
+                      "sortDescending": ": Activar orden de columna desendente"
+                  }
+            }
+    } )
+
+  });
+
+
+</script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+
+
   </body>
 
 </html>

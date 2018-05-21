@@ -11,3 +11,9 @@
 |
 */
 
+Route::get('/prueba', function () {
+    return view('Reportes/index');
+});
+
+Route::post('tablas','Reporte\Controlador_Reportes@prueba');
+Route::post('/excel','PaginaWeb\controlador_paginaWeb@archivo_excel');

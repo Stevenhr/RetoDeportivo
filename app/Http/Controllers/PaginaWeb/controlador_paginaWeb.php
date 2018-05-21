@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use \Validator;
 use \Session;
 use App\tbl_acceso;
+use App\tbl_actividades;
+use App\usuarios;
+use \Excel;
 //use App\Modelo_Tabla_Actividades_Accesos;
 //use App\Modelo_Tabla_Actividades;
 
@@ -111,4 +114,37 @@ class controlador_paginaWeb extends Controller
         return redirect('/');
 
     }
+    
+    public function archivo_excel(request $request){
+        
+
+        
+
+        Excel::create('Accesos_Usuarios', function($excel) {
+         
+            $users = tbl_acceso::all();
+            //$users2 = tbl_actividades::all();
+
+            
+         
+            $excel->sheet('Accesos_Usuarios', function($sheet) use($users) {
+
+                $datos=($users);
+
+                $sheet->fromArray($datos);
+             
+            });
+            /*$excel->sheet('Pruebas2', function($sheet) use($users2) {
+
+                $datos=($users2);
+                dd($users2);
+                $sheet->fromArray($datos);
+             
+            });*/
+         
+        })->export('xlsx');
+        
+    }
+
+
 }
