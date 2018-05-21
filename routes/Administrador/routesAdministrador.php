@@ -18,8 +18,8 @@ Route::get('/eventos', function () {
     return view('Administrador/eventos');
 });
 
-Route::get('/organizaciones', function () {
-    return view('Administrador/organizaciones');
-});
-
+//Ruta para agregar evento a la bd
 Route::post('agregarEvento','Administrador\controladorAdmin@agregarEvento');
+
+//Ruta para cargar eventos en el formulario de organizaciones
+Route::post('organizaciones','Administrador\controladorAdmin@cargarOrganizaciones');

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Collection;
 use App\Evento;
 
 class controladorAdmin extends Controller{
+
+	//=================================================================
 	public function agregarEvento(Request $request){
 		$evento = new Evento;
 		$obtenerID = Evento::All();
@@ -33,4 +35,12 @@ class controladorAdmin extends Controller{
         $evento->save();
 		return view('master');
 	}
+//========================================================================	
+public function cargarOrganizaciones ($eventoSeleccionado){
+
+
+return view('organizaciones');
 }
+
+//========================================================================
+}//Fin de la clase
