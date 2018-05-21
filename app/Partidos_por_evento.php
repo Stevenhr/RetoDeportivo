@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Partidos_por_evento extends Model
 {
     protected $table = 'tbl_Partidos_por_evento';
-    protected $primayKey= 'i_id_pk';
+    protected $primaryKey='i_id_pk';
  		protected $fillable=['i_id_pk', 'i_fk_id_evento', 'i_fk_id_equipo1', 'i_fk_id_equipo2', 't_hora', 'd_fecha', 'vc_lugar', 'vc_estadio', 'i_estado_terminado'];
+ 		public $timestamps=false;
 
 	public function eventos(){
  		return $this->belongsTo('App\Eventos','i_pk_id');
