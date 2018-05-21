@@ -1,5 +1,7 @@
-@extends('welcome')
-@section('eventos')
+@extends('master')
+@section('content')
+<br><br>
+
 <center><h1>Creación de Eventos</h1>
 	{!! Form::open(['url' => 'agregarEvento','files' => true,'enctype' => 'multipart/form-data', 'method' => 'POST']) !!}
 	{!! csrf_field() !!}
