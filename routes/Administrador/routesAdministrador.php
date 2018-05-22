@@ -11,15 +11,26 @@
 |
 */
 
+//The fuck is this?
 Route::get('/dfssd', function () {
     return view('welcome');
 });
+
+
 Route::get('/eventos', function () {
     return view('Administrador/eventos');
 });
 
-//Ruta para agregar evento a la bd
+
+//Ruta para agregar un evento a la bd
 Route::post('agregarEvento','Administrador\controladorAdmin@agregarEvento');
 
-//Ruta para cargar eventos en el formulario de organizaciones
+//Ruta para agregar una organización a la bd
+Route::post('agregarOrganizacion','Administrador\controladorAdmin@agregarOrganizacion');
+
+
+//Carga eventos en el formulario de organizaciones y retorna la view
 Route::get('organizaciones','Administrador\controladorAdmin@cargarOrganizaciones');
+
+
+
