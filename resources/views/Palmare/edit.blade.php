@@ -3,7 +3,7 @@
 @section('content')
 	
 	<h2>Editar jugadores {{$jugadores->nombre}}</h2>
-
+	
 	{!! Form::model($jugadores, ['method'=>'PATCH', 'route'=>['jugadores.update', $jugadores->i_pk_id]]) !!}
 	{{Form::token()}}
 

@@ -23,4 +23,14 @@ class Jugador extends Model
     	'tx_biografia',
     	'vc_foto'
     ];
+
+    public function Equipo(){ 
+ 
+        return $this->belongsTo('App\Equipo', 'i_pk_id'); 
+    } 
+ 
+    public function PalmareJugador(){ 
+ 
+        return $this->hasOne('App\PalmareJugador', 'i_pk_id'); 
+    } 
 }

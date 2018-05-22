@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('contenido')
+@section('content')
 	
 	<br><br>
 
@@ -18,6 +18,4 @@
 		        <p class="card-text">Fecha de nacimiento: {{$jugadores->d_fechanacimiento}}</p>
 		</div>
 	</div>
-	  <!--hpña-->
-	
 @stop

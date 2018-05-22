@@ -13,8 +13,13 @@
 
 
 
-Route::get('/fgdfgdfg', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('master');
 });
 
-Route::resource('jugadores', 'jugadoresController');
+Route::get('/welcome2', function () { 
+    return view('Palmare/welcome2'); 
+}); 
+ 
+Route::resource('/jugadores', 'Palmare\jugadoresController'); 
+Route::resource('Palmare/palmareJugadores', 'controladorPalmareJugador');

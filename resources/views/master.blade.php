@@ -58,7 +58,7 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Palmare Deportivo</a>
                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                       <a class="dropdown-item" href="#">Actividad 1</a> 
-                      <a class="dropdown-item" href="#">Actividad 2</a>
+                      <a class="dropdown-item" href="welcome2">Actividad 2</a>
                       <a class="dropdown-item" href="#">Actividad 3</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Separador</a>

@@ -1,30 +1,30 @@
-@extends('master')
-
-@section('content')
-	
-	<h2>Formulario ingreso de jugadores</h2>
-
-	{!! Form::open(array('url'=>'jugadores', 'method'=>'POST', 'autocomplete'=>'off', 'enctype' => 'multipart/form-data', 'class'=>'needs-validation', 'novalidate' )) !!}
-	{{Form::token()}}
-
-	<div class="row">
-		<div class="col-md-12">
-			<div class="form-group">
-				<label for="nombre">Nombre:</label>
-				<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del jugador" aria-describedby="nombreHelp" required>
-				<div class="valid-feedback">
-			        !Bien¡
-			    </div>
-			    <div class="invalid-feedback">
-		          	Ingrese el nombre del jugador.
-		        </div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="form-group">
-				<label for="i_altura">Altura:</label>
-				<input type="number" class="form-control" name="i_altura" id="i_altura" placeholder="Altura del jugador" required>
-				<div class="valid-feedback">
+@extends('master') 
+ 
+@section('content') 
+   
+  <h2>Formulario ingreso de jugadores</h2> 
+ 
+  {!! Form::open(array('url'=>'jugadores', 'method'=>'POST', 'autocomplete'=>'off', 'enctype' => 'multipart/form-data', 'class'=>'needs-validation', 'novalidate' )) !!} 
+  {{Form::token()}} 
+ 
+  <div class="row"> 
+    <div class="col-md-12"> 
+      <div class="form-group"> 
+        <label for="nombre">Nombre:</label> 
+        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del jugador" aria-describedby="nombreHelp" required> 
+        <div class="valid-feedback"> 
+              !Bien¡ 
+          </div> 
+          <div class="invalid-feedback"> 
+                Ingrese el nombre del jugador. 
+            </div> 
+      </div> 
+    </div> 
+    <div class="col-md-4"> 
+      <div class="form-group"> 
+        <label for="i_altura">Altura:</label> 
+        <input type="number" class="form-control" name="i_altura" id="i_altura" placeholder="Altura del jugador" required> 
+        <div class="valid-feedback"> 
 			        !Bien¡
 			    </div>
 			    <div class="invalid-feedback">
