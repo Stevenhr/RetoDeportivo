@@ -36,10 +36,12 @@ class controladorAdmin extends Controller{
 		return view('master');
 	}
 //========================================================================	
-public function cargarOrganizaciones ($eventoSeleccionado){
+public function cargarOrganizaciones (){
 
+$tablaEventos = Evento::all();
+$arrayEventos = $tablaEventos->toArray();
 
-return view('organizaciones');
+return view('Administrador/organizaciones')->with('arrayEventos',$arrayEventos);
 }
 
 //========================================================================
