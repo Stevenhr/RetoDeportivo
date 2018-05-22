@@ -22,4 +22,4 @@ Route::get('/eventos', function () {
 Route::post('agregarEvento','Administrador\controladorAdmin@agregarEvento');
 
 //Ruta para cargar eventos en el formulario de organizaciones
-Route::post('organizaciones','Administrador\controladorAdmin@cargarOrganizaciones');
+Route::get('organizaciones','Administrador\controladorAdmin@cargarOrganizaciones');
