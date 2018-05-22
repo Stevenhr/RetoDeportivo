@@ -9,6 +9,6 @@ class Evento extends Model{
 	protected $primaryKey='i_pk_id';
 	public $timestamps = false;
 	public function organizaciones(){
-		return $this->hasMany('App\organizaciones','tbl_eventos_i_fk_id');
+		return $this->hasMany('App\organizaciones','tbl_organizaciones_i_fk_id');
 	}
 }

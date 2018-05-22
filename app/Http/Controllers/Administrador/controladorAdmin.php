@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
 use App\Evento;
 use App\organizaciones;
+use App\tbl_sexo;
+use App\tbl_tipos_documentos;
 class controladorAdmin extends Controller{
 
 //=====================================================================
@@ -67,9 +69,7 @@ $vInscripcion = $request->input('vInscripcion');
 
 $nombreEvtSelect = $request->input('nombreEvtSelect');
 
-
-
-//========================================================================
+//=======================================================================
 //INSERTANDO DATOS A LA BD
 $newOrganizacion = new organizaciones;
 $idOrg = $newOrganizacion->count()+1;
@@ -95,7 +95,29 @@ return view('master');
 }
 
 
-//========================================================================
+//=======================================================================
+public function cargarPersonas (){
 
+
+//Cargo los tipos de documentos disponibles
+$tablaDocs = tbl_tipos_documentos::all();
+$arrayDocs = $tablaDocs->toArray();
+
+//Cargo las organizaciones disponibles
+$tablaOrg = organizaciones::all();
+$arrayOrg = $tablaOrg->toArray();
+
+//Cargo los sexos disponibles
+$tablaSexo = tbl_sexo::all();
+$arraySexo = $tablaSexo->toArray();
+
+
+
+return view('Administrador/personas')->with('arrayOrg',$arrayOrg)->with('arraySexo',$arraySexo)->with('arrayDocs',$arrayDocs);
+}
+
+
+
+//=======================================================================
 
 }//Fin del controlador
