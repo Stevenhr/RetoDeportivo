@@ -112,8 +112,6 @@ $arrayOrg = $tablaOrg->toArray();
 $tablaSexo = tbl_sexo::all();
 $arraySexo = $tablaSexo->toArray();
 
-
-
 return view('Administrador/personas')->with('arrayOrg',$arrayOrg)->with('arraySexo',$arraySexo)->with('arrayDocs',$arrayDocs);
 }
 //=======================================================================
@@ -149,6 +147,8 @@ foreach ($consultaOrg as $key => $value) {
 	$organizacionId=$value['i_pk_id'];
 }
 
+//INSERCIÓN DE DATOS A LA DB
+//===================================================================
 //Inserción de datos a la tabla -> tbl_personas
 $newPersona = new usuarios;
 $idPersona = $newPersona->count()+1;
@@ -160,14 +160,21 @@ $newPersona->vc_apellido = $apellido;
 $newPersona->vc_correo = $correo;
 $newPersona->i_telefono = $telefono;
 $newPersona->i_celular = $celular;
-
 $newPersona->tbl_sexo_i_pk_id = $sexoId;
 $newPersona->tbl_tipos_documentos_i_pk_id = $documentoId;
-
-
 $newPersona->save();
 
+//Inserción de datos a la tabla -> tbl_pivot_organizacion_persona
+$newUsuario = usuarios::find($idPersona); 
+$newUsuario->organizaciones()->attach($organizacionId);
+//======================================================================
+
+
+
+return view('master');
 }//Fin de la función agregar persona
 //=======================================================================
+
+
 
 }//Fin del controlador

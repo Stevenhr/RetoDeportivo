@@ -33,7 +33,7 @@
     </div>
     
     <div class="form-group"> 
-      <label class="col-form-label" for="cedula">Número de cédula</label> 
+      <label class="col-form-label" for="cedula">Número de identificación</label> 
       <input type="numeric" class="form-control" placeholder="Ingresa la cédula" id="cedula" name="cedula" required> 
     </div> 
     
@@ -77,7 +77,6 @@
     </select>
     </div>
       
-
       <button type="submit" class="btn btn-primary">Submit</button> 
       </fieldset> 
       {!! Form::close() !!} 
