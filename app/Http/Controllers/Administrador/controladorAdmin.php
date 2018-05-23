@@ -115,9 +115,41 @@ $arraySexo = $tablaSexo->toArray();
 
 return view('Administrador/personas')->with('arrayOrg',$arrayOrg)->with('arraySexo',$arraySexo)->with('arrayDocs',$arrayDocs);
 }
+//=======================================================================
+public function agregarPersona (Request $request){
+
+//RECEPCIÓN DE DATOS
+$nombre = $request->input('nombre');
+$apellido = $request->input('apellido');
+$nombreTipoDoc = $request->input('nombreTipoDoc');
+$cedula = $request->input('cedula');
+$sexo = $request->input('nombreTipoSexo');
+$telefono = $request->input('telefono');
+$celular = $request->input('celular');
+$correo = $request->input('correo');
+$nombreOrg = $request->input('nombreOrg');
+
+//CONSULTANDO LAS FK DE TIPO-DOC, SEXO , ORGANIZACIÓN
+$modeloDoc = tbl_tipos_documentos::all();
+$consultaDoc = $modeloDoc->where('vc_nombre',$nombreTipoDoc);
+foreach ($consultaDoc as $key => $value) {
+	$documentoId=$value['i_pk_id'];
+}
+
+$modeloSexo = tbl_sexo::all();
+$consultaSexo = $modeloSexo->where('vc_sexo',$nombreTipoSexo);
+foreach ($consultaSexo as $key => $value) {
+	$sexoId=$value['i_pk_id'];
+}
+
+$modeloOrg = organizaciones::all();
+$consultaOrg = $modeloOrg->where('vc_nombre',$nombreOrg);
+foreach ($consultaOrg as $key => $value) {
+	$organizacionId=$value['i_pk_id'];
+}
 
 
+}
 
 //=======================================================================
-
 }//Fin del controlador

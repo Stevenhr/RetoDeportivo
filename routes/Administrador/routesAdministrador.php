@@ -36,3 +36,5 @@ Route::get('organizaciones','Administrador\controladorAdmin@cargarOrganizaciones
 //Carga organizaciones en el formulario de personas y retorna la view
 Route::get('personas','Administrador\controladorAdmin@cargarPersonas');
 
+//Ruta para agregar una organización a la bd
+Route::post('agregarPersona','Administrador\controladorAdmin@agregarPersona');
