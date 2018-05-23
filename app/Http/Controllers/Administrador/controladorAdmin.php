@@ -9,6 +9,7 @@ use App\Evento;
 use App\organizaciones;
 use App\tbl_sexo;
 use App\tbl_tipos_documentos;
+use App\usuarios;
 class controladorAdmin extends Controller{
 
 //=====================================================================
@@ -123,7 +124,7 @@ $nombre = $request->input('nombre');
 $apellido = $request->input('apellido');
 $nombreTipoDoc = $request->input('nombreTipoDoc');
 $cedula = $request->input('cedula');
-$sexo = $request->input('nombreTipoSexo');
+$nombreTipoSexo = $request->input('nombreTipoSexo');
 $telefono = $request->input('telefono');
 $celular = $request->input('celular');
 $correo = $request->input('correo');
@@ -148,8 +149,25 @@ foreach ($consultaOrg as $key => $value) {
 	$organizacionId=$value['i_pk_id'];
 }
 
+//Inserción de datos a la tabla -> tbl_personas
+$newPersona = new usuarios;
+$idPersona = $newPersona->count()+1;
 
-}
+$newPersona->i_pk_id = $idPersona;
+$newPersona->vc_cedula = $cedula;
+$newPersona->vc_nombre = $nombre;
+$newPersona->vc_apellido = $apellido;
+$newPersona->vc_correo = $correo;
+$newPersona->i_telefono = $telefono;
+$newPersona->i_celular = $celular;
 
+$newPersona->tbl_sexo_i_pk_id = $sexoId;
+$newPersona->tbl_tipos_documentos_i_pk_id = $documentoId;
+
+
+$newPersona->save();
+
+}//Fin de la función agregar persona
 //=======================================================================
+
 }//Fin del controlador
