@@ -25,12 +25,12 @@ Route::get('/eventos', function () {
 //Ruta para agregar un evento a la bd
 Route::post('agregarEvento','Administrador\controladorAdmin@agregarEvento');
 
-//Ruta para agregar una organización a la bd
-Route::post('agregarOrganizacion','Administrador\controladorAdmin@agregarOrganizacion');
-
 
 //Carga eventos en el formulario de organizaciones y retorna la view
 Route::get('organizaciones','Administrador\controladorAdmin@cargarOrganizaciones');
+
+//Ruta para agregar una organización a la bd
+Route::post('agregarOrganizacion','Administrador\controladorAdmin@agregarOrganizacion');
 
 
 //Carga organizaciones en el formulario de personas y retorna la view
@@ -38,3 +38,16 @@ Route::get('personas','Administrador\controladorAdmin@cargarPersonas');
 
 //Ruta para agregar una organización a la bd
 Route::post('agregarPersona','Administrador\controladorAdmin@agregarPersona');
+
+
+//Carga los modulos en el formulario de actividades y retorna la view
+Route::get('actividades','Administrador\controladorAdmin@cargarActividades');
+
+//Ruta para agregar una actividad a la bd
+Route::post('agregarActividad','Administrador\controladorAdmin@agregarActividad');
+
+
+
+
+
+

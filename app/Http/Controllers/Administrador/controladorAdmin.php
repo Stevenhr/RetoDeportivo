@@ -11,6 +11,9 @@ use App\tbl_sexo;
 use App\tbl_tipos_documentos;
 use App\usuarios;
 use App\tbl_acceso;
+use App\tbl_modulos;
+use App\tbl_actividades;
+
 class controladorAdmin extends Controller{
 
 //=====================================================================
@@ -48,8 +51,7 @@ $arrayEventos = $tablaEventos->toArray();
 return view('Administrador/organizaciones')->with('arrayEventos',$arrayEventos);
 }
 
-//========================================================================
-
+//=====================================================================
 public function agregarOrganizacion (Request $request){
 
 //Recepción de datos del formulario
@@ -184,7 +186,8 @@ $acceso->vc_usuario = $usuario;
 $acceso->vc_contrasena= $contrasenia;
 $acceso->save();
 
-
+//PENDIENTE
+//Retornar en una vista el usuario y contraseña generado
 return view('master');
 
 }//Fin de la función agregar persona
@@ -211,5 +214,14 @@ $contrasenia=str_pad($apellido,12, $numRandom, STR_PAD_RIGHT );
 return $contrasenia;
 }
 //=======================================================================
+public function cargarActividades (){
+
+$tablaModulos = tbl_modulos::all();
+$arrayModulos = $tablaModulos->toArray();
+
+return view('Administrador/actividades')->with('arrayModulos',$arrayModulos);
+}
+
+//=====================================================================
 
 }//Fin del controlador
