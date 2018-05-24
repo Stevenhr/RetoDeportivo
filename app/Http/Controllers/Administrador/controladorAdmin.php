@@ -114,6 +114,7 @@ $arraySexo = $tablaSexo->toArray();
 
 return view('Administrador/personas')->with('arrayOrg',$arrayOrg)->with('arraySexo',$arraySexo)->with('arrayDocs',$arrayDocs);
 }
+
 //=======================================================================
 public function agregarPersona (Request $request){
 
@@ -162,19 +163,46 @@ $newPersona->i_telefono = $telefono;
 $newPersona->i_celular = $celular;
 $newPersona->tbl_sexo_i_pk_id = $sexoId;
 $newPersona->tbl_tipos_documentos_i_pk_id = $documentoId;
-$newPersona->save();
+//$newPersona->save();
 
 //Inserción de datos a la tabla -> tbl_pivot_organizacion_persona
-$newUsuario = usuarios::find($idPersona); 
-$newUsuario->organizaciones()->attach($organizacionId);
+//$newUsuario = usuarios::find($idPersona); 
+//$newUsuario->organizaciones()->attach($organizacionId);
 //======================================================================
 
+//SE ASIGNA USUARIO Y CONTRASEÑA PARA LA NUEVA PERSONA
+$usuario=$this->generarUsuario($nombre,$apellido,$cedula);
+$contrasenia=$this->generarContrasenia($apellido);
 
 
-return view('master');
+
+
+
+
+//return view('master');
 }//Fin de la función agregar persona
 //=======================================================================
 
+//=======================================================================
+public function generarUsuario($nombre,$apellido,$cedula){
 
+$nombre = strtolower($nombre);
+$apellido = strtolower($apellido);
+
+$usuario=str_pad($nombre,16, $cedula, STR_PAD_RIGHT );
+
+return $usuario;
+
+}
+
+public function generarContrasenia($apellido){
+
+$apellido = strtolower($apellido);
+$numRandom= rand(66666,6666666);
+$contrasenia=str_pad($apellido,18, $numRandom, STR_PAD_RIGHT );
+
+return $contrasenia;
+}
+//=======================================================================
 
 }//Fin del controlador
