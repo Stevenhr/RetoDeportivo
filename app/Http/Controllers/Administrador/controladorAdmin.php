@@ -223,5 +223,17 @@ return view('Administrador/actividades')->with('arrayModulos',$arrayModulos);
 }
 
 //=====================================================================
+public function deshabilitarModulo(Request $request){
+	$id = $request->input('id');
+	$datos = tbl_modulos::find($id);
+	if($datos['i_estado']==1){
+		tbl_modulos::Where('i_pk_id',$id)->update(['i_estado' => 0]);
+	}else{
+		tbl_modulos::Where('i_pk_id',$id)->update(['i_estado' => 1]);
+	}
+	return $this->cargarActividades();
+}
+//=====================================================================
+
 
 }//Fin del controlador

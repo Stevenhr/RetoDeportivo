@@ -47,4 +47,70 @@
       {!! Form::close() !!} 
   </center> 
   </div>
+  <br><br><br>
+
+
+
+    <div class="container border border-success">
+
+  <br>
+    <table id="table_id" class="table table-striped table-bordered nowrap border-dark" width="100%">
+        <thead class="table-primary">
+            <tr>
+                <th><center>Id</center></th>
+                <th><center>Nombre</center></th>
+                <th><center>Estado</center></th>
+                <th><center>Habilitar/Deshabilitar</center></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+              use App\tbl_modulos;
+              use Illuminate\Database\Eloquent\Collection;
+               $loginActual=tbl_modulos::All();
+               $datos=$loginActual;
+               for($i=0;$i<sizeof($datos);$i++){
+                if($datos[$i]['i_estado']==0){
+                  $mensaje = "Habilitar";
+                }else{
+                  $mensaje = "Deshabilitar";
+                }
+                  echo '<tr>
+                  <td>
+                  <center>
+                  ',$datos[$i]['i_pk_id'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_nombre'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['i_estado'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>';
+                  ?>
+                  {!! Form::open(['url' => 'deshabilitar']) !!}
+                  <button  class="btn btn-danger" name="id" id="id" <?php  echo "value=".$datos[$i]['i_pk_id'];?>><?php echo $mensaje;  ?></button>
+                  {!! Form::close() !!}
+                  <?php 
+                  echo '
+                  </a>
+                  </center>
+                  </td>
+                  </tr>
+
+                  </div>';
+               }
+            ?>
+
+        </tbody>
+    </table>
+    <br>
+    
+</div>
 @stop

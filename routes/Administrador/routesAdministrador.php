@@ -20,7 +20,9 @@ Route::get('/dfssd', function () {
 Route::get('/eventos', function () {
     return view('Administrador/eventos');
 });
-
+Route::get('/actividades', function () {
+    return view('Administrador/actividades');
+});
 
 //Ruta para agregar un evento a la bd
 Route::post('agregarEvento','Administrador\controladorAdmin@agregarEvento');
@@ -45,6 +47,9 @@ Route::get('actividades','Administrador\controladorAdmin@cargarActividades');
 
 //Ruta para agregar una actividad a la bd
 Route::post('agregarActividad','Administrador\controladorAdmin@agregarActividad');
+
+//Ruta para deshabilitar modulos
+Route::post('deshabilitar','Administrador\controladorAdmin@deshabilitarModulo');
 
 
 
