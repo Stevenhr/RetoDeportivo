@@ -26,6 +26,8 @@ class usuarios extends Model{
 		return $this->belongsTo('App\tbl_tipos_documentos','tbl_tipos_documentos_i_pk_id');
 	}
 
+
+
 	//RELACIONES DE OTROS GRUPOS PARA USUARIOS (SIN DESARROLLAR)
 	/*public function jugador(){
 		return $this->hasOne('App\tbl_jugador','i_pk_id');

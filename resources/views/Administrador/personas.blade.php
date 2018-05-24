@@ -34,7 +34,7 @@
     
     <div class="form-group"> 
       <label class="col-form-label" for="cedula">Número de identificación</label> 
-      <input type="numeric" class="form-control" placeholder="Ingresa la cédula" id="cedula" name="cedula" required> 
+      <input type="text" class="form-control" placeholder="Ingresa tu número de identificación" id="cedula" name="cedula" required> 
     </div> 
     
 

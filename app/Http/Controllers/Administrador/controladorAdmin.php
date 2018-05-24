@@ -10,6 +10,7 @@ use App\organizaciones;
 use App\tbl_sexo;
 use App\tbl_tipos_documentos;
 use App\usuarios;
+use App\tbl_acceso;
 class controladorAdmin extends Controller{
 
 //=====================================================================
@@ -99,6 +100,8 @@ return view('master');
 //=======================================================================
 public function cargarPersonas (){
 
+// clean the output buffer
+ob_clean();
 
 //Cargo los tipos de documentos disponibles
 $tablaDocs = tbl_tipos_documentos::all();
@@ -124,8 +127,8 @@ $apellido = $request->input('apellido');
 $nombreTipoDoc = $request->input('nombreTipoDoc');
 $cedula = $request->input('cedula');
 $nombreTipoSexo = $request->input('nombreTipoSexo');
-$telefono = $request->input('telefono');
-$celular = $request->input('celular');
+$telefono =(int) $request->input('telefono');
+$celular = (int)$request->input('celular');
 $correo = $request->input('correo');
 $nombreOrg = $request->input('nombreOrg');
 
@@ -163,23 +166,27 @@ $newPersona->i_telefono = $telefono;
 $newPersona->i_celular = $celular;
 $newPersona->tbl_sexo_i_pk_id = $sexoId;
 $newPersona->tbl_tipos_documentos_i_pk_id = $documentoId;
-//$newPersona->save();
+$newPersona->save();
 
 //Inserción de datos a la tabla -> tbl_pivot_organizacion_persona
-//$newUsuario = usuarios::find($idPersona); 
-//$newUsuario->organizaciones()->attach($organizacionId);
+$newUsuario = usuarios::find($idPersona); 
+$newUsuario->organizaciones()->attach($organizacionId);
 //======================================================================
 
 //SE ASIGNA USUARIO Y CONTRASEÑA PARA LA NUEVA PERSONA
 $usuario=$this->generarUsuario($nombre,$apellido,$cedula);
 $contrasenia=$this->generarContrasenia($apellido);
 
+//Se insertan datos a la tabla -> tbl_acceso
+$acceso = new tbl_acceso;
+$acceso->tbl_personas_i_pk_id = $idPersona;
+$acceso->vc_usuario = $usuario;
+$acceso->vc_contrasena= $contrasenia;
+$acceso->save();
 
 
+return view('master');
 
-
-
-//return view('master');
 }//Fin de la función agregar persona
 //=======================================================================
 
@@ -198,8 +205,8 @@ return $usuario;
 public function generarContrasenia($apellido){
 
 $apellido = strtolower($apellido);
-$numRandom= rand(66666,6666666);
-$contrasenia=str_pad($apellido,18, $numRandom, STR_PAD_RIGHT );
+$numRandom= rand(11111,66666);
+$contrasenia=str_pad($apellido,12, $numRandom, STR_PAD_RIGHT );
 
 return $contrasenia;
 }
