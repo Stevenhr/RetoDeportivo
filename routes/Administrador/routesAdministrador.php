@@ -23,6 +23,9 @@ Route::get('/eventos', function () {
 Route::get('/actividades', function () {
     return view('Administrador/actividades');
 });
+Route::get('/actividadesUsuario', function () {
+    return view('Administrador/actividadesUsuario');
+});
 
 //Ruta para agregar un evento a la bd
 Route::post('agregarEvento','Administrador\controladorAdmin@agregarEvento');
@@ -50,9 +53,3 @@ Route::post('agregarActividad','Administrador\controladorAdmin@agregarActividad'
 
 //Ruta para deshabilitar modulos
 Route::post('deshabilitar','Administrador\controladorAdmin@deshabilitarModulo');
-
-
-
-
-
-

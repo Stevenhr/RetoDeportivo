@@ -81,4 +81,97 @@
       {!! Form::close() !!} 
   </center> 
   </div>
+
+  <br><br><br><br>
+    <table id="table_id" width="100%">
+        <thead class="table-primary">
+            <tr>
+                <th><center>Id</center></th>
+                <th><center>Nombre</center></th>
+                <th><center>Apellido</center></th>
+                <th><center>Sexo</center></th>
+                <th><center>Tipo de Documento</center></th>
+                <th><center>Documento</center></th>
+                <th><center>Telefono</center></th>
+                <th><center>Celular</center></th>
+                <th><center>Correo</center></th>
+                <th><center>Actividades</center></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+              use App\usuarios;
+              use Illuminate\Database\Eloquent\Collection;
+               $loginActual=usuarios::All();
+               $datos=$loginActual;
+               for($i=0;$i<sizeof($datos);$i++){
+                if($datos[$i]['i_estado']==0){
+                  $mensaje = "Habilitar";
+                }else{
+                  $mensaje = "Deshabilitar";
+                }
+                  echo '<tr>
+                  <td>
+                  <center>
+                  ',$datos[$i]['i_pk_id'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_nombre'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_apellido'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_apellido'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_apellido'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_cedula'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['i_telefono'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['i_celular'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_correo'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>';
+                  ?>
+                  <a href="actividadesUsuario<?php  echo "?id=".$datos[$i]['i_pk_id'];?>"><button  class="btn btn-info" name="id" id="id" <?php  echo "value=".$datos[$i]['i_pk_id'];?>>Mostrar</button></a>
+                  <?php 
+                  echo '
+                  </a>
+                  </center>
+                  </td>
+                  </tr>
+
+                  </div>';
+               }
+            ?>
+
+        </tbody>
+    </table>
+    <br>
 @stop

@@ -188,7 +188,7 @@ $acceso->save();
 
 //PENDIENTE
 //Retornar en una vista el usuario y contraseña generado
-return view('master');
+return view('personas');
 
 }//Fin de la función agregar persona
 //=======================================================================
