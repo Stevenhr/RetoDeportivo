@@ -222,6 +222,44 @@ $arrayModulos = $tablaModulos->toArray();
 return view('Administrador/actividades')->with('arrayModulos',$arrayModulos);
 }
 
+//====================================================================
+
+public function agregarActividad (Request $request){
+
+//RECEPCIÓN DE DATOS
+$nombModulo = $request->input('nombModulo');	
+$nombre = $request->input('nombre');
+$descripcion = $request->input('descripcion');
+$estado = $request->input('estado');
+
+
+//Adecuación de los datos
+
+$modulo = tbl_modulos::where('vc_nombre',$nombModulo)->get();
+$modulo= $modulo->toArray();
+
+$newActividad = new tbl_actividades;
+$idActividad = $newActividad->count()+1;
+
+if ($estado=="Habilitada") {
+	$estadoActividad=1;
+}else{
+	$estadoActividad=0;
+}
+
+//INSERCIÓN DE DATOS A LA TABLA: tbl_actividades
+$newActividad->i_pk_id = $idActividad;
+$newActividad->vc_nombre = $nombre;
+$newActividad->vc_descripcion = $descripcion;
+$newActividad->i_estado = $estadoActividad;
+$newActividad->tbl_modulos_i_fk_id = $modulo[0]['i_pk_id'];
+
+$newActividad->save();
+
+return("master");
+
+}
+
 //=====================================================================
 public function deshabilitarModulo(Request $request){
 	$id = $request->input('id');
