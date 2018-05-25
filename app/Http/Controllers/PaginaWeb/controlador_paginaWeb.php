@@ -11,6 +11,7 @@ use \Validator;
 use \Session;
 use App\tbl_acceso;
 use App\tbl_actividades;
+use App\tbl_modulos;
 use App\usuarios;
 use \Excel;
 //use App\Modelo_Tabla_Actividades_Accesos;
@@ -27,7 +28,9 @@ class controlador_paginaWeb extends Controller
      */
 
     public function solicitudRegistro(request $request){
-        return redirect('/inicio');
+
+        //$matriz=usuarios::find(12)->acceso->actividades[0]['pivot']->update(['i_estado'=>"0"]);
+        //dd($matriz);
     }
 
     /*
@@ -76,20 +79,19 @@ class controlador_paginaWeb extends Controller
                     if(Session::has('Id_Usuario')){
                         Session::forget('Id_Usuario');
                     }
-                    /*if(Session::has('Actividades_Disponibles_Login')){
-                        Session::forget('Actividades_Disponibles_Login');
-                    }*/
+                    if(Session::has('Actividades_Inicio_Sesion')){
+                        Session::forget('Actividades_Inicio_Sesion');
+                    }
+
                     $usuarioExistenteDatos=$usuarioExistente->get();
                     Session::put('Id_Usuario',$usuarioExistenteDatos[0]['tbl_personas_i_pk_id']);
-                    /*$actividadesDisponibles=tbl_acceso::find($usuarioExistenteDatos[0]['tbl_personas_i_pk_id'])->actividades()->get();
-                    $actividadesDisponibles2=Modelo_Tabla_Actividades_Accesos::find($actividadesDisponibles[0]['tbl_actividades_i_pk_id'])->actividades()->get();
-                    $actividadesDisponiblesDatos=$actividadesDisponibles;
-                    $cantidadActividadesDisponibles=$actividadesDisponiblesDatos->count();
-                    
-                    if($cantidadActividadesDisponibles>0){
-                        
-                        Session::put('Actividades_Disponibles_Login',$actividadesDisponiblesDatos);
-                    }*/
+
+                    $actividades=usuarios::find(Session::get('Id_Usuario'))->acceso->actividades;
+                    $cantidadActividades=$actividades->count();
+                    for ($i=0; $i < $cantidadActividades ; $i++) { 
+                        $actividadesDisponibles[] = array('id_actividad' => $actividades[$i]['pivot']['tbl_actividades_i_pk_id'], 'nombre_actividad' => $actividades[$i]['vc_nombre'], 'estado_actividad_local' => $actividades[$i]['pivot']['i_estado'],'estado_actividad_global' => $actividades[$i]['i_estado']);
+                    }
+                    Session::put('Actividades_Inicio_Sesion',$actividadesDisponibles);
                     return redirect('/usuarioIniciado');
                 }else{
                     $mensajeLogin="La contraseña es incorrecta.";

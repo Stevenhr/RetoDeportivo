@@ -16,6 +16,6 @@ class tbl_acceso extends Model{
     
     //
 	public function actividades(){
-		return $this->belongsToMany('App\tbl_actividades','tbl_pivote_actividades_accesos','acceso_tbl_personas_i_pk_id','tbl_actividades_i_pk_id');
+		return $this->belongsToMany('App\tbl_actividades','tbl_pivote_actividades_accesos','acceso_tbl_personas_i_pk_id','tbl_actividades_i_pk_id')->withPivot(['i_estado']);
 	}
 }
