@@ -21,11 +21,13 @@
         </thead>
         <tbody>
             <?php
-                 
-               foreach ($codigo as $key => $value) {
-               		echo $value;
-               }
+                 if( isset($codigo)){
 
+                       foreach ($codigo as $key => $value) {
+                       		echo $value;
+                       }
+               
+               }
             ?>
 
         </tbody>

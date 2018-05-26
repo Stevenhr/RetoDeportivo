@@ -31,18 +31,29 @@ class Controlador_Reportes extends Controller
     			break;
 
     		case "2":
-
+                
     			$datos=usuarios::with('organizaciones.evento')->get()->find(Session::get('Id_Usuario'));
+                 
+                 if(isset($datos)){
                		$datos2=count($datos['organizaciones']);
+               
+
 	               	for ($j=0; $j < $datos2; $j++) { 
 	               		 $arrayName[] ='<tr><td><center>'.$datos['organizaciones'][$j]['i_pk_id'].'</center></td><td><center>'.$datos['organizaciones'][$j]['vc_nombre'].'</center></td><td><center>'.$datos['organizaciones'][$j]['i_nit'].'</center></td><td><center>'.$datos['organizaciones'][$j]['vc_direccion'].'</center></td><td><center>'.$datos['organizaciones'][$j]['i_telefono'].'</center></td><td><center>'.$datos['organizaciones'][$j]['vc_correo'].'</center></td><td><center>'.$datos['organizaciones'][$j]['i_valorInscripcion'].'</center></td></tr>';
 	               	}
 
+
+
 				$inyeccion = ['codigo'=>$arrayName];
 
-    			return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Eventos_Registrados',$inyeccion); 
+    			return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Organizaciones_Registrados',$inyeccion); 
+            }else{
+
+                 return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Organizaciones_Registrados'); 
+            }
     			break;
-    		
+            
+    		 
     		default:
     			//return redirect('/reporte_eventos_registrados'); 
     			break;

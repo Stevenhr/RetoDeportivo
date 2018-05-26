@@ -79,10 +79,9 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes</a>
                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-                      {!! Form::open(['url' => 'tablas']) !!}
-                      <button class="dropdown-item" type="submit">Tablas</button>
-                      {!! Form::close() !!}
-                      <a class="dropdown-item" href="#">Actividad 2</a>
+                      
+                      <a class="dropdown-item" href="actividades_usuario">Usuario</a>
+                      <a class="dropdown-item" href="">Actividad 2</a>
                       <a class="dropdown-item" href="#">Actividad 3</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Separador</a>
