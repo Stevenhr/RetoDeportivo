@@ -23,7 +23,7 @@
     <div class="col-md-4"> 
       <div class="form-group"> 
         <label for="vc_propietario">Propietario</label> 
-        <input type="number" class="form-control" name="vc_propietario" id="vc_propietario" placeholder="propietario del equipo" required> 
+        <input type="text" class="form-control" name="vc_propietario" id="vc_propietario" placeholder="propietario del equipo" required> 
         <div class="valid-feedback"> 
 			        !Bien¡
 			    </div>

@@ -37,7 +37,7 @@ class equiposController extends Controller{
         $equipo->vc_fundado=$request->get('vc_fundado');
         $equipo->save();
 
-        $equipo=DB::table('tbl_equipo') 
+        $equipos=DB::table('tbl_equipo') 
         ->orderBy('i_pk_id', 'desc') 
         ->paginate(7); 
  

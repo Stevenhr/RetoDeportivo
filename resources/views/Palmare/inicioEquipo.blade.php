@@ -36,7 +36,7 @@
 							<td>{{ $datos->vc_fundado }}</td>
 							<td>
 								<a href="{{URL::action('Palmare\equiposController@edit', $datos->i_pk_id)}}" class="btn btn-primary">Editar</a> 
-            					<a href="{{URL::action('PalmareequiposController@show', $datos->i_pk_id)}}" class="btn btn-success">Mostrar</a>
+            					<a href="{{URL::action('Palmare\equiposController@show', $datos->i_pk_id)}}" class="btn btn-success">Mostrar</a>
 								<a href="" data-target="#modal-delete-{{$datos->i_pk_id}}" data-toggle="modal" class="btn btn-danger">Eliminar</a> 
 							</td>
 						</tr>

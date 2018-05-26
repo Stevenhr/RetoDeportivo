@@ -21,6 +21,7 @@
 						<th>Posicion</th>
 						<th>Lugar de nacimiento</th>
 						<th>Fecha de nacimiento</th>
+						<th>Palmare</th>
 						<th>Opciones</th>
 					</thead>
 
@@ -34,11 +35,17 @@
 							<td>{{ $datos->vc_lugarNacimiento }}</td>
 							<td>{{ $datos->d_fechanacimiento }}</td>
 							<td>
-								<a href="{{URL::action('Palmare\jugadoresController@edit', $datos->i_pk_id)}}" class="btn btn-primary">Editar</a> 
-            					<a href="{{URL::action('Palmare\jugadoresController@show', $datos->i_pk_id)}}" class="btn btn-success">Mostrar</a>
-								<a href="" data-target="#modal-delete-{{$datos->i_pk_id}}" data-toggle="modal" class="btn btn-danger">Eliminar</a> 
+								<a href="" data-target="#modal-createPalmare-{{$datos->i_pk_id}}" data-toggle="modal" class="btn btn-primary btn-block">Crear</a> 
+            					<a href="" class="btn btn-success btn-block">Mostrar</a>
+								<a href="" data-target="" data-toggle="modal" class="btn btn-danger btn-block">Eliminar</a>
+							</td>
+							<td>
+								<a href="{{URL::action('Palmare\jugadoresController@edit', $datos->i_pk_id)}}" class="btn btn-primary btn-block">Editar</a> 
+            					<a href="{{URL::action('Palmare\jugadoresController@show', $datos->i_pk_id)}}" class="btn btn-success btn-block">Mostrar</a>
+								<a href="" data-target="#modal-delete-{{$datos->i_pk_id}}" data-toggle="modal" class="btn btn-danger btn-block">Eliminar</a> 
 							</td>
 						</tr>
+						@include('Palmare.createPalmare')
 						@include('Palmare.destroy')
 						@endforeach
 					</tbody>

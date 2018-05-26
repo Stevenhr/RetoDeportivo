@@ -30,7 +30,7 @@ class Jugador extends Model
     } 
  
     public function PalmareJugador(){ 
- 
-        return $this->hasOne('App\PalmareJugador', 'i_pk_id'); 
+        
+        return $this->hasMany('App\palmareJugador','tbl_jugador_i_pk_id');
     } 
 }

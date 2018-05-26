@@ -23,5 +23,6 @@ Route::get('/welcome2', function () {
  
 Route::resource('/jugadores', 'Palmare\jugadoresController'); 
 Route::resource('/equipos', 'Palmare\equiposController'); 
+Route::post('/palmareJugadores', 'Palmare\palmareJugadoresController@create');
 //Route::resource('Palmare/palmareEquipos', 'controladorPalmareEquipo');
-Route::resource('Palmare/palmareJugadores', 'controladorPalmareJugador');
+//Route::resource('Palmare/palmareJugadores', 'controladorPalmareJugador');

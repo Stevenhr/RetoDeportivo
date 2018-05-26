@@ -4,7 +4,7 @@ namespace App;
  
 use Illuminate\Database\Eloquent\Model; 
  
-class PalmareJugador extends Model 
+class palmareJugador extends Model 
 { 
     protected $table = 'tbl_palmaresjugador'; 
     protected $primaryKey = 'i_pk_id'; 
@@ -19,8 +19,8 @@ class PalmareJugador extends Model
 
     public function Jugador(){ 
  
-      return $this->belongsTo('App\Persona', 'tbl_equipo_i_pk_id'); 
-    } 
+      return $this->belongsTo('App\Jugador', 'tbl_equipo_i_pk_id'); 
+    }   
 }
 
 
