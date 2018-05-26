@@ -89,8 +89,6 @@ class controlador_paginaWeb extends Controller
                     $actividades=tbl_acceso::find(Session::get('Id_Usuario'))->actividades;
                     $cantidadActividades=$actividades->count();
 
-                    dd($actividades);
-
                     for ($i=0; $i < $cantidadActividades ; $i++) { 
                         $actividadesDisponibles[] = array('id_actividad' => $actividades[$i]['pivot']['tbl_actividades_i_pk_id'], 'nombre_actividad' => $actividades[$i]['vc_nombre'], 'estado_actividad_local' => $actividades[$i]['pivot']['i_estado'],'estado_actividad_global' => $actividades[$i]['i_estado'],'modulo_actividad'=>$actividades[$i]['tbl_modulos_i_fk_id']);
                     }
