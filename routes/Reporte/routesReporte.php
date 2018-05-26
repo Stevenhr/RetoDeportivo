@@ -21,6 +21,14 @@ Route::get('/reporte_organizaciones_registrados', function () {
     return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Organizaciones_Registrados');
 });
 
+Route::get('/reporte_eventos_registrados', function () {
+    return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Eventos_Registrados');
+});
+
+Route::get('/reporte_pronosticos_registrados', function () {
+    return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Pronosticos_Registrados');
+});
+
 
 Route::post('reportes','Reporte\Controlador_Reportes@reportes');
 Route::post('tablas','Reporte\Controlador_Reportes@prueba');
