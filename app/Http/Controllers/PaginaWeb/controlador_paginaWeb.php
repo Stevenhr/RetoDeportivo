@@ -111,7 +111,7 @@ class controlador_paginaWeb extends Controller
                     }
 
                     Session::put('Actividades_Inicio_Sesion',$permisos);
-                    dd(Session::get('Actividades_Inicio_Sesion'));
+                    //dd(Session::get('Actividades_Inicio_Sesion'));
                    
                     $datos=usuarios::find(Session::get('Id_Usuario'));
                     $datosInicio = ['Id'=>$datos['i_pk_id'],'Nombres'=>$datos['vc_nombre'],'Apellidos'=>$datos['vc_apellido'],'Cedula'=>$datos['vc_cedula'],'Tipo_Documento'=>$datos['tbl_tipos_documentos_i_pk_id'],'Sexo'=>$datos['tbl_sexo_i_pk_id'],'Correo_Electronico'=>$datos['vc_correo'],'Telefono'=>$datos['i_telefono'],'Celular'=>$datos['i_celular']];
