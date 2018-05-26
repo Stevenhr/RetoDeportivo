@@ -139,6 +139,58 @@ class Controlador_Reportes extends Controller
 
 
                 break;   
+
+
+                case "4":
+                      //aqui van los nombres de la funcion
+                    $datos=usuarios::with('organizaciones.evento.partidosEvento.pronostico.puntosPersona')->get()->find(Session::get('Id_Usuario'));
+                 
+                 if(isset($datos)){
+
+                    $datos2=count($datos['organizaciones']);
+
+
+                    dd($datos);
+                  
+
+                    for ($j=0; $j < $datos2; $j++) { 
+
+                      $datos3=count($datos['organizaciones'][$j]['evento']['partidosEvento']);
+
+
+                        for ($i=0; $i < $datos3 ; $i++) { 
+                            # code...
+                        
+
+                      $arrayName[] ='<tr><td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_pk_id'].
+                          
+                          '<td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_fk_id_partido'].
+
+                          '<td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_fk_id_personas'].
+
+                          '<td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_fk_id_organizacion'].
+
+                           '<td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_resultado_equipo1'].
+
+                           '<td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_resultado_equipo2'].
+
+                    
+                         '</center></td></tr>';
+
+                         }
+                    }
+
+
+
+                $inyeccion = ['codigo'=>$arrayName];
+
+                return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Pronosticos_Registrados',$inyeccion); 
+            }else{
+
+                 return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Pronosticos_Registrados'); 
+            }
+
+                break;
             
     		 
     		default:

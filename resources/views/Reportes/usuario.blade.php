@@ -8,7 +8,7 @@
         <button type="button submit" class="btn btn-primary" name="id_reporte" value="1"> Mis Eventos </button>
         <button type="button submit" class="btn btn-primary" name="id_reporte" value="2"> Mis Organizaciones</button>
          <button type="button submit" class="btn btn-primary" name="id_reporte" value="3">Mis Pronosticos </button>
-
+        <button type="button submit" class="btn btn-primary" name="id_reporte" value="4">Mis Puntos Acumulados </button>
         {!! Form::close() !!}
 		@yield('contenido')
 	</div>

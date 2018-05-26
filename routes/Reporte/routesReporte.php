@@ -29,6 +29,10 @@ Route::get('/reporte_pronosticos_registrados', function () {
     return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Pronosticos_Registrados');
 });
 
+Route::get('/reporte_puntos_acumulados', function () {
+    return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Puntos_Acumulados');
+});
+
 
 Route::post('reportes','Reporte\Controlador_Reportes@reportes');
 Route::post('tablas','Reporte\Controlador_Reportes@prueba');
