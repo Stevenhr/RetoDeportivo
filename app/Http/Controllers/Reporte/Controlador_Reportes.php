@@ -29,16 +29,17 @@ class Controlador_Reportes extends Controller
     		case "1":
                 
                  $datos=usuarios::with('organizaciones.evento')->get()->find(Session::get('Id_Usuario'));
-                 
+                 //dd($datos);
+
                  if(isset($datos)){
                     $datos2=count($datos['organizaciones']);
+
                
                   for ($i=0; $i < $datos2; $i++) { 
-
-                      for ($j=0; $j < $datos2; $j++) { 
-
-                         $arrayName[] ='<tr><td><center>'.$datos['organizaciones'][$i]['evento'][$j]['i_pk_id'].'</center></td><td><center>'.$datos['organizaciones'][$i]['evento'][$j]['vc_nombre'].'</center></td><td><center>'.$datos['organizaciones'][$i]['evento'][$j]['d_fechaInicio'].'</center></td><td><center>'.$datos['organizaciones'][$i]['evento'][$j]['d_fechaFinal'].'</center></td><td><center>'.$datos['organizaciones'][$i]['evento'][$j]['vc_logo'].'</center></td></tr>';
-                    }
+                       
+                     
+                         $arrayName[] ='<tr><td><center>'.$datos['organizaciones'][$i]['evento']['i_pk_id'].'</center></td><td><center>'.$datos['organizaciones'][$i]['evento']['vc_nombre'].'</center></td><td><center>'.$datos['organizaciones'][$i]['evento']['d_fechaInicio'].'</center></td><td><center>'.$datos['organizaciones'][$i]['evento']['d_fechaFinal'].'</center></td><td><center>'.$datos['organizaciones'][$i]['evento']['vc_logo'].'</center></td></tr>';
+                    
                   }
                     
 
@@ -61,6 +62,8 @@ class Controlador_Reportes extends Controller
                 
     			$datos=usuarios::with('organizaciones.evento')->get()->find(Session::get('Id_Usuario'));
                  
+
+
                  if(isset($datos)){
                		$datos2=count($datos['organizaciones']);
                
@@ -82,16 +85,43 @@ class Controlador_Reportes extends Controller
 
 
              case "3":
-                   
-
-              $datos=usuarios::with('organizaciones.evento')->get()->find(Session::get('Id_Usuario'));
-                 
-                 if(isset($datos)){
-                    $datos2=count($datos['organizaciones']);
                
 
+              $datos=usuarios::with('organizaciones.evento.partidosEvento.pronostico')->get()->find(Session::get('Id_Usuario'));
+                 
+                 if(isset($datos)){
+
+                    $datos2=count($datos['organizaciones']);
+
+
+                    //dd($datos);
+                  
+
                     for ($j=0; $j < $datos2; $j++) { 
-                         $arrayName[] ='<tr><td><center>'.$datos['organizaciones'][$j]['i_pk_id'].'</center></td><td><center>'.$datos['organizaciones'][$j]['vc_nombre'].'</center></td><td><center>'.$datos['organizaciones'][$j]['i_nit'].'</center></td><td><center>'.$datos['organizaciones'][$j]['vc_direccion'].'</center></td><td><center>'.$datos['organizaciones'][$j]['i_telefono'].'</center></td><td><center>'.$datos['organizaciones'][$j]['vc_correo'].'</center></td><td><center>'.$datos['organizaciones'][$j]['i_valorInscripcion'].'</center></td></tr>';
+
+                      $datos3=count($datos['organizaciones'][$j]['evento']['partidosEvento']);
+
+
+                        for ($i=0; $i < $datos3 ; $i++) { 
+                            # code...
+                        
+
+                      $arrayName[] ='<tr><td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_pk_id'].
+                          
+                          '<td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_fk_id_partido'].
+
+                          '<td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_fk_id_personas'].
+
+                          '<td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_fk_id_organizacion'].
+
+                           '<td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_resultado_equipo1'].
+
+                           '<td><center>'.$datos['organizaciones'][$j]['evento']['partidosEvento'][$i]['pronostico']['i_resultado_equipo2'].
+
+                    
+                         '</center></td></tr>';
+
+                         }
                     }
 
 

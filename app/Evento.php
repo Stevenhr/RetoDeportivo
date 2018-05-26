@@ -14,4 +14,8 @@ public function organizaciones(){
 return $this->hasMany('App\organizaciones','tbl_eventos_i_fk_id');
 }
 
+public function partidosEvento(){
+ return $this->hasMany('App\Partidos_por_evento','i_fk_id_evento');
+}
+
 }

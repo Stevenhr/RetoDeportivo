@@ -12,4 +12,7 @@ class Pronosticos_personas extends Model
 		public function PartidosEvento(){
  			return $this->belongsTo('App\Partidos_por_evento','i_id_pk');
  		}
+
+       
+
 }

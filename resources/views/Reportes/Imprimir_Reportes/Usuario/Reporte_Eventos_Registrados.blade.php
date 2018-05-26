@@ -10,6 +10,7 @@
     <table id="table_id" class="table table-striped table-bordered nowrap border-dark" width="100%">
         <thead class="table-primary">
             <tr>
+                 <th><center>Id</center></th>
                 <th><center>Nombre Evento</center></th>
                 <th><center>Fecha Inicio</center></th>
                 <th><center>FechaFinal</center></th>
