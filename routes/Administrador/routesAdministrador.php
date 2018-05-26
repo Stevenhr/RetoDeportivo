@@ -53,3 +53,30 @@ Route::post('agregarActividad','Administrador\controladorAdmin@agregarActividad'
 
 //Ruta para deshabilitar modulos
 Route::post('deshabilitar','Administrador\controladorAdmin@deshabilitarModulo');
+
+//Ruta para Eliminar Eventos
+Route::post('eliminarEventos','Administrador\controladorAdmin@eliminarEventos');
+
+//Ruta para Modificar Eventos
+Route::post('modificarEventos','Administrador\controladorAdmin@modificarEventos');
+
+//Ruta para Modificar Eventos Parte 2
+Route::post('editarEventos','Administrador\controladorAdmin@editarEventos');
+
+//Ruta para Eliminar Organizaciones
+Route::post('eliminarOrganizaciones','Administrador\controladorAdmin@eliminarOrganizaciones');
+
+//Ruta para Modificar Organizaciones
+Route::post('modificarOrganizaciones','Administrador\controladorAdmin@modificarOrganizaciones');
+
+//Ruta para Modificar Organizaciones Parte 2
+Route::post('editarOrganizaciones','Administrador\controladorAdmin@editarOrganizaciones');
+
+//Ruta para Eliminar Personas
+Route::post('eliminarPersonas','Administrador\controladorAdmin@eliminarPersonas');
+
+//Ruta para Modificar Personas
+Route::post('modificarPersonas','Administrador\controladorAdmin@modificarPersonas');
+
+//Ruta para Modificar Personas Parte 2
+Route::post('editarPersonas','Administrador\controladorAdmin@editarPersonas');

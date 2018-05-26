@@ -20,9 +20,6 @@ class controladorAdmin extends Controller{
 	public function agregarEvento(Request $request){
 		$evento = new Evento;
 		$obtenerID = Evento::All();
-		$ID = $obtenerID->count();
-		$ID++;
-		$evento['i_pk_id'] = $ID;
 		//SE AGREGA EL NOMBRE
 		$nombre = $request->input('nombre');
 		$evento['vc_nombre'] = $request->input('nombre');
@@ -46,10 +43,10 @@ class controladorAdmin extends Controller{
 			return view('Administrador/eventosError');
 			}
 		}
-		
+		/*
 		if ($evento['d_fechaInicio']<$evento['d_fechaFinal'] ) {
 			return view('Administrador/eventosError');
-		}
+		}*/
         //SE GUARDA LA INFORMACION EN LA DB
         $evento->save();
 
@@ -97,7 +94,7 @@ $nombreEvtSelect = $request->input('nombreEvtSelect');
 //=======================================================================
 //INSERTANDO DATOS A LA BD
         $modeloOrganizacion= organizaciones::all();
-        $organizacionoNombre = $modeloEvento->where('vc_nombre',$nombreOrg);
+        $organizacionoNombre = $modeloOrganizacion->where('vc_nombre',$nombreOrg);
         foreach ($organizacionoNombre as $key => $value) {
 			$organizacionoNombre2=$value['vc_nombre'];
 			if ($organizacionoNombre2!=null) {
@@ -147,6 +144,30 @@ $tablaSexo = tbl_sexo::all();
 $arraySexo = $tablaSexo->toArray();
 
 return view('Administrador/personas')->with('arrayOrg',$arrayOrg)->with('arraySexo',$arraySexo)->with('arrayDocs',$arrayDocs);
+}
+//=======================================================================
+public function cargarPersonasMod (int $id){
+
+// clean the output buffer
+ob_clean();
+
+//Cargo los tipos de documentos disponibles
+$tablaDocs = tbl_tipos_documentos::all();
+$arrayDocs = $tablaDocs->toArray();
+
+//Cargo las organizaciones disponibles
+$tablaOrg = organizaciones::all();
+$arrayOrg = $tablaOrg->toArray();
+
+//Cargo los sexos disponibles
+$tablaSexo = tbl_sexo::all();
+$arraySexo = $tablaSexo->toArray();
+
+
+$tablaGente = usuarios::find($id);
+$arrayGente = $tablaGente->toArray();
+
+return view('Administrador/modificarPersonas')->with('arrayGente',$arrayGente)->with('arrayOrg',$arrayOrg)->with('arraySexo',$arraySexo)->with('arrayDocs',$arrayDocs);
 }
 //=======================================================================
 public function cargarPersonasError (){
@@ -354,8 +375,119 @@ public function deshabilitarModulo(Request $request){
 }
 //=====================================================================
 
+public function eliminarEventos(Request $request){
+	$id=$request->input('id');
+	$datos=Evento::find($id)->delete();
+    return view('Administrador/eventos');
+}
+
+public function modificarEventos(Request $request){
+	$id = $request->input('id');
+	$datos = Evento::find($id);
+	return view ('Administrador/modificarEventos')->with('datos',$datos);
+}
+
+public function editarEventos(Request $request){
+	//SE AGREGA EL NOMBRE
+	$id=$request->input('id');
+	$evento = Evento::find($id);
+	$nombre = $request->input('nombre');
+	$fI = $request->input('fechaI');
+	$fF = $request->input('fechaF');
+	$evento->vc_nombre = $nombre;
+	//SE AGREGA LA FECHA DE INICIO
+	$evento->d_fechaInicio = $fI;
+	//SE AGREGA LA FECHA DEL FINAL
+	$evento->d_fechaFinal = $fF;
+	$evento->save();
+	return view('Administrador/eventos');
+}
+
+public function eliminarOrganizaciones(Request $request){
+	$id=$request->input('id');
+	$datos=organizaciones::find($id)->delete();
+    return $this->cargarOrganizaciones();
+}
+
+public function modificarOrganizaciones(Request $request){
+	$id = $request->input('id');
+	$datos = organizaciones::find($id);
+	return view ('Administrador/modificarOrganizaciones')->with('arrayEventos',$datos);
+}
+
+public function editarOrganizaciones(Request $request){
+	//SE AGREGA EL NOMBRE
+	$id=$request->input('id');
+	$organizacion = organizaciones::find($id);
+
+	$nombreOrg = $request->input('nombre');
+	$nit = $request->input('nit');
+	$direccion = $request->input('direccion');
+	$telefono = $request->input('telefono');
+	$correo = $request->input('correo');
+	$vInscripcion = $request->input('vInscripcion');
+
+	$organizacion->vc_nombre = $nombreOrg;
+	$organizacion->i_nit = $nit;
+	$organizacion->vc_direccion = $direccion;
+	$organizacion->i_telefono = $telefono;
+	$organizacion->vc_correo = $correo;
+	$organizacion->i_valorInscripcion = $vInscripcion;
+
+	$organizacion->save();
+	return $this->cargarOrganizaciones();
+}
+
+public function eliminarPersonas(Request $request){
+	$id=$request->input('id');
+	$datos=usuarios::find($id)->delete();
+    return $this->cargarPersonas();
+}
+
+public function modificarPersonas(Request $request){
+	$id = $request->input('id');
+	$datos = usuarios::find($id);
+	return $this->cargarPersonasMod($id);
+}
+
+public function editarPersonas(Request $request){
+	//SE AGREGA EL NOMBRE
+	$id=$request->input('id');
+	$usuarios = usuarios::find($id);
+
+	$nombre = $request->input('nombre');
+	$apellido = $request->input('apellido');
+	$nombreTipoDoc = $request->input('nombreTipoDoc');
+	$cedula = $request->input('cedula');
+	$nombreTipoSexo = $request->input('nombreTipoSexo');
+	$telefono =(int) $request->input('telefono');
+	$celular = (int)$request->input('celular');
+	$correo = $request->input('correo');
 
 
+	$modeloDoc = tbl_tipos_documentos::all();
+	$consultaDoc = $modeloDoc->where('vc_nombre',$nombreTipoDoc);
+	foreach ($consultaDoc as $key => $value) {
+		$documentoId=$value['i_pk_id'];
+	}
 
+	$modeloSexo = tbl_sexo::all();
+	$consultaSexo = $modeloSexo->where('vc_sexo',$nombreTipoSexo);
+	foreach ($consultaSexo as $key => $value) {
+		$sexoId=$value['i_pk_id'];
+	}
+
+	$usuarios->vc_nombre = $nombre;
+	$usuarios->vc_apellido = $apellido;
+	$usuarios->tbl_tipos_documentos_i_pk_id = $documentoId;
+	$usuarios->vc_cedula = $cedula;
+	$usuarios->i_telefono = $telefono;
+	$usuarios->vc_correo = $correo;
+	$usuarios->i_celular = $celular;
+	$usuarios->tbl_sexo_i_pk_id = $sexoId;
+
+	$usuarios->save();
+	return $this->cargarPersonas();
+}
 
 }//Fin del controlador

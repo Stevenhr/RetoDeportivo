@@ -40,4 +40,80 @@
 	  </fieldset>
 	</center>
 	{!! Form::close() !!}
+
+
+    <div class="container border border-success">
+
+  <br>
+    <table id="table_id" class="table table-striped table-bordered nowrap border-dark" width="100%">
+        <thead class="table-primary">
+            <tr>
+                <th><center>Id</center></th>
+                <th><center>Nombre</center></th>
+                <th><center>Fecha de Inicio</center></th>
+                <th><center>Fecha de Finalización</center></th>
+                <th><center>Modificar</center></th>
+                <th><center>Eliminar</center></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+              use App\Evento;
+              use Illuminate\Database\Eloquent\Collection;
+               $loginActual=Evento::All();
+               $datos=$loginActual;
+               for($i=0;$i<sizeof($datos);$i++){
+               	$mensaje="Eliminar";
+                  echo '<tr>
+                  <td>
+                  <center>
+                  ',$datos[$i]['i_pk_id'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_nombre'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['d_fechaInicio'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['d_fechaFinal'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>';
+                  ?>
+                  {!! Form::open(['url' => 'modificarEventos']) !!}
+                  <button  class="btn btn-info" name="id" id="id" <?php  echo "value=".$datos[$i]['i_pk_id'];?>>Modificar</button>
+                  {!! Form::close() !!}
+                  <?php 
+                  echo '
+                  </center>
+                  </td>
+                  <td>
+                  <center>';
+                  ?>
+                  {!! Form::open(['url' => 'eliminarEventos']) !!}
+                  <button  class="btn btn-danger" name="id" id="id" <?php  echo "value=".$datos[$i]['i_pk_id'];?>><?php echo $mensaje;  ?></button>
+                  {!! Form::close() !!}
+                  <?php 
+                  echo '
+                  </center>
+                  </td>
+                  </tr>
+
+                  </div>';
+               }
+            ?>
+
+        </tbody>
+    </table>
+    <br>
+    
+</div>
 @stop

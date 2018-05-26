@@ -62,4 +62,93 @@
       </fieldset> 
       {!! Form::close() !!} 
   </center> 
+
+
+
+    <table id="table_id" class="table table-striped table-bordered nowrap border-dark" width="100%">
+        <thead class="table-primary">
+            <tr>
+                <th><center>Id</center></th>
+                <th><center>Nombre</center></th>
+                <th><center>NIT</center></th>
+                <th><center>Direccion</center></th>
+                <th><center>Telefono</center></th>
+                <th><center>Correo</center></th>
+                <th><center>Valor de Inscripcion</center></th>
+                <th><center>Modificar</center></th>
+                <th><center>Eliminar</center></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+              use App\organizaciones;
+              use Illuminate\Database\Eloquent\Collection;
+               $loginActual=organizaciones::All();
+               $datos=$loginActual;
+               for($i=0;$i<sizeof($datos);$i++){
+                $mensaje="Eliminar";
+                  echo '<tr>
+                  <td>
+                  <center>
+                  ',$datos[$i]['i_pk_id'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_nombre'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['i_nit'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_direccion'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['i_telefono'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['vc_correo'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>
+                  ',$datos[$i]['i_valorInscripcion'],'
+                  </center>
+                  </td>
+                  <td>
+                  <center>';
+                  ?>
+                  {!! Form::open(['url' => 'modificarOrganizaciones']) !!}
+                  <button  class="btn btn-info" name="id" id="id" <?php  echo "value=".$datos[$i]['i_pk_id'];?>>Modificar</button>
+                  {!! Form::close() !!}
+                  <?php 
+                  echo '
+                  </center>
+                  </td>
+                  <td>
+                  <center>';
+                  ?>
+                  {!! Form::open(['url' => 'eliminarOrganizaciones']) !!}
+                  <button  class="btn btn-danger" name="id" id="id" <?php  echo "value=".$datos[$i]['i_pk_id'];?>><?php echo $mensaje;  ?></button>
+                  {!! Form::close() !!}
+                  <?php 
+                  echo '
+                  </center>
+                  </td>
+                  </tr>
+
+                  </div>';
+               }
+            ?>
+
+        </tbody>
+    </table>
 @stop
