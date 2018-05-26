@@ -14,6 +14,13 @@
 Route::get('/prueba', function () {
     return view('Reportes/index');
 });
+Route::get('/actividades_usuario', function () {
+    return view('Reportes/usuario');
+});
+Route::get('/reporte_eventos_registrados', function () {
+    return view('Reportes/Imprimir_Reportes/Usuario/Reporte_Eventos_Registrados');
+});
 
+Route::post('reportes','Reporte\Controlador_Reportes@reportes');
 Route::post('tablas','Reporte\Controlador_Reportes@prueba');
 Route::post('/excel','PaginaWeb\controlador_paginaWeb@archivo_excel');

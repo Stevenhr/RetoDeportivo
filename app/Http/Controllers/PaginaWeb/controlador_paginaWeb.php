@@ -30,7 +30,8 @@ class controlador_paginaWeb extends Controller
     public function solicitudRegistro(request $request){
 
         //$matriz=usuarios::find(12)->acceso->actividades[0]['pivot']->update(['i_estado'=>"0"]);
-        //dd($matriz);
+        $matriz=usuarios::with('acceso.actividades')->get();
+        dd($matriz);
     }
 
     /*
@@ -82,6 +83,9 @@ class controlador_paginaWeb extends Controller
                     if(Session::has('Actividades_Inicio_Sesion')){
                         Session::forget('Actividades_Inicio_Sesion');
                     }
+                    if(Session::has('Datos_Usuario_Logueado')){
+                        Session::forget('Datos_Usuario_Logueado');
+                    }
 
                     $usuarioExistenteDatos=$usuarioExistente->get();
                     Session::put('Id_Usuario',$usuarioExistenteDatos[0]['tbl_personas_i_pk_id']);
@@ -94,6 +98,9 @@ class controlador_paginaWeb extends Controller
                     }
                     
                     Session::put('Actividades_Inicio_Sesion',$actividadesDisponibles);
+
+                    $datos=usuarios::find(Session::get('Id_Usuario'));
+                    
                     return redirect('/usuarioIniciado');
                 }else{
                     $mensajeLogin="La contraseña es incorrecta.";
