@@ -172,6 +172,7 @@ $newPersona->save();
 
 //Inserción de datos a la tabla -> tbl_pivot_organizacion_persona
 $newUsuario = usuarios::find($idPersona); 
+//Attach accede a la tabla pivot y rellena con el id de persona y luego con el id de organización
 $newUsuario->organizaciones()->attach($organizacionId);
 //======================================================================
 
@@ -199,6 +200,7 @@ public function generarUsuario($nombre,$apellido,$cedula){
 $nombre = strtolower($nombre);
 $apellido = strtolower($apellido);
 
+//Combina nombre con cedula a la derecha hasta que sea de 16 caracteres
 $usuario=str_pad($nombre,16, $cedula, STR_PAD_RIGHT );
 
 return $usuario;
@@ -256,7 +258,12 @@ $newActividad->tbl_modulos_i_fk_id = $modulo[0]['i_pk_id'];
 
 $newActividad->save();
 
-return("master");
+//En construcción
+//Inserción de datos a la tabla -> Pivot
+//$newAct = tbl_actividades::find($idActividad);  
+//$newAct->acceso()->attach(array->['acceso_tbl_personas_i_pk_id'=>$idActividad, 'i_estado'=>0]);
+
+return view("master");
 
 }
 
@@ -272,6 +279,9 @@ public function deshabilitarModulo(Request $request){
 	return $this->cargarActividades();
 }
 //=====================================================================
+
+
+
 
 
 }//Fin del controlador
