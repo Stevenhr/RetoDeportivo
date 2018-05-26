@@ -1,27 +1,31 @@
 @extends('master') 
 @section('content') 
 
- <div class="container col-6">
-  
-<center><h1>Creación de personas</h1> 
-  {!! Form::open(['url' => 'agregarPersona','files' => true,'enctype' => 'multipart/form-data', 'method' => 'POST']) !!} 
-  {!! csrf_field() !!} 
-    <fieldset> 
-    
-    <div class="form-group"> 
-      <label class="col-form-label" for="nombre">Nombre</label> 
-      <input type="text" class="form-control" placeholder="Ingrese el nombre de la persona" id="nombre" name="nombre" required> 
-    </div> 
-     
-    
-    <div class="form-group"> 
-      <label class="col-form-label" for="apellido">Apellido</label> 
-      <input type="text" class="form-control" placeholder="Ingrese el apellido de la persona" id="apellido" name="apellido" required> 
-    </div>
 
+    <fieldset> 
+<div class="container col-6">
+  <div class="container-fluid" style="background-color: #E67E22  ;color: white;">
+ <center><h1 style="padding-top: 20px;padding-bottom: 20px">Creación de Personas</h1> </center>
+</div>
+@yield('error')
+  {!! Form::open(['url' => 'agregarPersona','files' => true,'enctype' => 'multipart/form-data', 'method' => 'POST']) !!} 
+  {!! csrf_field() !!}
+  <center> 
+    
+    <div class="form-group"> 
+      <label class="col-form-label" for="nombre" style="color:   #D35400   ;font-family:arial;font-weight: bold;">Nombre</label><br>
+      <input type="text" class="form-control" placeholder="Ingrese el nombre de la persona" id="nombre" name="nombre" required style="padding-left: 100px;padding-right: 100px"> <br>
+    </div> 
+    <br>
+    
+    <div class="form-group"> 
+      <label class="col-form-label" for="apellido" style="color:   #D35400   ;font-family:arial;font-weight: bold;">Apellido</label> <br>
+      <input type="text" class="form-control" placeholder="Ingrese el apellido de la persona" id="apellido" name="apellido" required style="padding-left: 100px;padding-right: 100px"> <br>
+    </div>
+    <br>
     <div class="form-group">
-    <label class="col-form-label" for="nombreTipoDoc">Tipo de documento de identificación</label>    
-    <select class="form-control" name="nombreTipoDoc">
+    <label class="col-form-label" for="nombreTipoDoc" style="color:  #D35400  ;font-family:arial;font-weight: bold;">Tipo de documento de identificación</label>    <br>
+    <select class="form-control" name="nombreTipoDoc" style="padding-left: 100px;padding-right: 100px"><br>
     
       <?php foreach ($arrayDocs as $key => $documento) { ?>
         
@@ -30,16 +34,16 @@
     
     </select>
     </div>
-    
+    <br>
     <div class="form-group"> 
-      <label class="col-form-label" for="cedula">Número de identificación</label> 
-      <input type="text" class="form-control" placeholder="Ingresa tu número de identificación" id="cedula" name="cedula" required> 
+      <label class="col-form-label" for="cedula" style="color:  #D35400  ;font-family:arial;font-weight: bold;">Número de identificación</label> <br>
+      <input type="text" class="form-control" placeholder="Ingresa tu número de identificación" id="cedula" name="cedula" required style="padding-left: 100px;padding-right: 100px"> <br>
     </div> 
-    
+    <br>
 
     <div class="form-group">
-    <label class="col-form-label" for="nombreTipoSexo">Sexo</label>    
-    <select class="form-control" name="nombreTipoSexo">
+    <label class="col-form-label" for="nombreTipoSexo" style="color:  #D35400  ;font-family:arial;font-weight: bold;">Sexo</label>    <br>
+    <select class="form-control" name="nombreTipoSexo" style="padding-left: 100px;padding-right: 100px"><br>
     
       <?php foreach ($arraySexo as $key => $sexo) { ?>
         
@@ -48,25 +52,25 @@
     
     </select>
     </div>
-
+    <br>
     <div class="form-group"> 
-      <label class="col-form-label" for="telefono">Teléfono</label> 
-      <input type="numeric" class="form-control" placeholder="Número de contacto" id="telefono" name="telefono" required> 
+      <label class="col-form-label" for="telefono" style="color:  #D35400  ;font-family:arial;font-weight: bold;">Teléfono</label> <br>
+      <input type="numeric" class="form-control" placeholder="Número de contacto" id="telefono" name="telefono" required style="padding-left: 100px;padding-right: 100px"> <br>
     </div> 
-    
+    <br>
     <div class="form-group"> 
-      <label class="col-form-label" for="celular">Celular</label> 
-      <input type="numeric" class="form-control" placeholder="Número de celular" id="celular" name="celular" required> 
+      <label class="col-form-label" for="celular" style="color:  #D35400  ;font-family:arial;font-weight: bold;">Celular</label><br> 
+      <input type="numeric" class="form-control" placeholder="Número de celular" id="celular" name="celular" required style="padding-left: 100px;padding-right: 100px"> <br>
     </div> 
-        
+        <br>
     <div class="form-group"> 
-    <label class="col-form-label" for="correo">Correo electrónico</label> 
-      <input type="email" class="form-control" placeholder="correo donde nos pondremos en contacto contigo" id="correo" name="correo" required> 
+    <label class="col-form-label" for="correo" style="color:  #D35400  ;font-family:arial;font-weight: bold;">Correo electrónico</label> <br>
+      <input type="email" class="form-control" placeholder="correo donde nos pondremos en contacto contigo" id="correo" name="correo" required style="padding-left: 100px;padding-right: 100px"> <br>
     </div> 
-      
+      <br>
     <div class="form-group">
-    <label class="col-form-label" for="nombreOrg">Organización  a la que esta vinculado</label>    
-    <select class="form-control" name="nombreOrg">
+    <label class="col-form-label" for="nombreOrg" style="color:  #D35400  ;font-family:arial;font-weight: bold;">Organización  a la que esta vinculado</label><br>    
+    <select class="form-control" name="nombreOrg" style="padding-left: 100px;padding-right: 100px"><br>
     
       <?php foreach ($arrayOrg as $key => $organizacion) { ?>
         
@@ -75,103 +79,10 @@
     
     </select>
     </div>
-      
-      <button type="submit" class="btn btn-primary">Submit</button> 
+      <br>
+      <button type="submit" class="btn btn-outline-primary" style="padding-left: 100px;padding-right: 100px">Submit</button> 
       </fieldset> 
       {!! Form::close() !!} 
   </center> 
   </div>
-
-  <br><br><br><br>
-    <table id="table_id" width="100%">
-        <thead class="table-primary">
-            <tr>
-                <th><center>Id</center></th>
-                <th><center>Nombre</center></th>
-                <th><center>Apellido</center></th>
-                <th><center>Sexo</center></th>
-                <th><center>Tipo de Documento</center></th>
-                <th><center>Documento</center></th>
-                <th><center>Telefono</center></th>
-                <th><center>Celular</center></th>
-                <th><center>Correo</center></th>
-                <th><center>Actividades</center></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-              use App\usuarios;
-              use Illuminate\Database\Eloquent\Collection;
-               $loginActual=usuarios::All();
-               $datos=$loginActual;
-               for($i=0;$i<sizeof($datos);$i++){
-                if($datos[$i]['i_estado']==0){
-                  $mensaje = "Habilitar";
-                }else{
-                  $mensaje = "Deshabilitar";
-                }
-                  echo '<tr>
-                  <td>
-                  <center>
-                  ',$datos[$i]['i_pk_id'],'
-                  </center>
-                  </td>
-                  <td>
-                  <center>
-                  ',$datos[$i]['vc_nombre'],'
-                  </center>
-                  </td>
-                  <td>
-                  <center>
-                  ',$datos[$i]['vc_apellido'],'
-                  </center>
-                  </td>
-                  <td>
-                  <center>
-                  ',$datos[$i]['vc_apellido'],'
-                  </center>
-                  </td>
-                  <td>
-                  <center>
-                  ',$datos[$i]['vc_apellido'],'
-                  </center>
-                  </td>
-                  <td>
-                  <center>
-                  ',$datos[$i]['vc_cedula'],'
-                  </center>
-                  </td>
-                  <td>
-                  <center>
-                  ',$datos[$i]['i_telefono'],'
-                  </center>
-                  </td>
-                  <td>
-                  <center>
-                  ',$datos[$i]['i_celular'],'
-                  </center>
-                  </td>
-                  <td>
-                  <center>
-                  ',$datos[$i]['vc_correo'],'
-                  </center>
-                  </td>
-                  <td>
-                  <center>';
-                  ?>
-                  <a href="actividadesUsuario<?php  echo "?id=".$datos[$i]['i_pk_id'];?>"><button  class="btn btn-info" name="id" id="id" <?php  echo "value=".$datos[$i]['i_pk_id'];?>>Mostrar</button></a>
-                  <?php 
-                  echo '
-                  </a>
-                  </center>
-                  </td>
-                  </tr>
-
-                  </div>';
-               }
-            ?>
-
-        </tbody>
-    </table>
-    <br>
 @stop

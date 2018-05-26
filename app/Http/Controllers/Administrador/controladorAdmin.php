@@ -38,8 +38,21 @@ class controladorAdmin extends Controller{
         \Storage::disk('local')->put($nombre , \File::get($file));
         //SE GUARDA LA RUTA DEL ARCHIVO - TOPE DE CARACTERES EN DB: 45 - CARACTERES USADOS EN LA RUTA: 24 - CARACTERES DISPONIBLES: 21
         $evento['vc_logo'] = "public/storage/imagenes/".$file->getClientOriginalName();
+        $modeloEvento = Evento::all();
+        $eventoNombre = $modeloEvento->where('vc_nombre',$nombre);
+        foreach ($eventoNombre as $key => $value) {
+			$eventoNombre2=$value['vc_nombre'];
+			if ($eventoNombre2!=null) {
+			return view('Administrador/eventosError');
+			}
+		}
+		
+		if ($evento['d_fechaInicio']<$evento['d_fechaFinal'] ) {
+			return view('Administrador/eventosError');
+		}
         //SE GUARDA LA INFORMACION EN LA DB
         $evento->save();
+
 		return view('master');
 	}
 //========================================================================	
@@ -49,6 +62,14 @@ $tablaEventos = Evento::all();
 $arrayEventos = $tablaEventos->toArray();
 
 return view('Administrador/organizaciones')->with('arrayEventos',$arrayEventos);
+}
+//========================================================================	
+public function cargarOrganizacionesError (){
+
+$tablaEventos = Evento::all();
+$arrayEventos = $tablaEventos->toArray();
+
+return view('Administrador/organizacionesError')->with('arrayEventos',$arrayEventos);
 }
 
 //=====================================================================
@@ -75,6 +96,14 @@ $nombreEvtSelect = $request->input('nombreEvtSelect');
 
 //=======================================================================
 //INSERTANDO DATOS A LA BD
+        $modeloOrganizacion= organizaciones::all();
+        $organizacionoNombre = $modeloEvento->where('vc_nombre',$nombreOrg);
+        foreach ($organizacionoNombre as $key => $value) {
+			$organizacionoNombre2=$value['vc_nombre'];
+			if ($organizacionoNombre2!=null) {
+			return $this->cargarOrganizacionesError();
+		    }
+		}
 $newOrganizacion = new organizaciones;
 $idOrg = $newOrganizacion->count()+1;
 
@@ -95,7 +124,7 @@ $newOrganizacion->i_valorInscripcion = $vInscripcion;
 $newOrganizacion->tbl_eventos_i_fk_id= $eventoId;
 $newOrganizacion->save();
 
-return view('master');
+	return $this->cargarOrganizaciones();
 }
 
 
@@ -119,6 +148,26 @@ $arraySexo = $tablaSexo->toArray();
 
 return view('Administrador/personas')->with('arrayOrg',$arrayOrg)->with('arraySexo',$arraySexo)->with('arrayDocs',$arrayDocs);
 }
+//=======================================================================
+public function cargarPersonasError (){
+
+// clean the output buffer
+ob_clean();
+
+//Cargo los tipos de documentos disponibles
+$tablaDocs = tbl_tipos_documentos::all();
+$arrayDocs = $tablaDocs->toArray();
+
+//Cargo las organizaciones disponibles
+$tablaOrg = organizaciones::all();
+$arrayOrg = $tablaOrg->toArray();
+
+//Cargo los sexos disponibles
+$tablaSexo = tbl_sexo::all();
+$arraySexo = $tablaSexo->toArray();
+
+return view('Administrador/personasError')->with('arrayOrg',$arrayOrg)->with('arraySexo',$arraySexo)->with('arrayDocs',$arrayDocs);
+}
 
 //=======================================================================
 public function agregarPersona (Request $request){
@@ -133,6 +182,15 @@ $telefono =(int) $request->input('telefono');
 $celular = (int)$request->input('celular');
 $correo = $request->input('correo');
 $nombreOrg = $request->input('nombreOrg');
+
+        $modeloPersonas= usuarios::all();
+        $personasNombre = $modeloPersonas->where('vc_cedula',$cedula);
+        foreach ( $personasNombre as $key => $value) {
+			 $personasNombre2=$value['vc_cedula'];
+		if ( $personasNombre2!=null) {
+			return $this->cargarPersonasError();
+		}
+		}
 
 //CONSULTANDO LAS FK DE TIPO-DOC, SEXO , ORGANIZACIÓN
 $modeloDoc = tbl_tipos_documentos::all();
@@ -189,7 +247,7 @@ $acceso->save();
 
 //PENDIENTE
 //Retornar en una vista el usuario y contraseña generado
-return view('personas');
+return $this->cargarPersonas();
 
 }//Fin de la función agregar persona
 //=======================================================================
@@ -223,6 +281,14 @@ $arrayModulos = $tablaModulos->toArray();
 
 return view('Administrador/actividades')->with('arrayModulos',$arrayModulos);
 }
+//=======================================================================
+public function cargarActividadesError (){
+
+$tablaModulos = tbl_modulos::all();
+$arrayModulos = $tablaModulos->toArray();
+
+return view('Administrador/actividadesError')->with('arrayModulos',$arrayModulos);
+}
 
 //====================================================================
 
@@ -235,6 +301,14 @@ $descripcion = $request->input('descripcion');
 $estado = $request->input('estado');
 
 
+    $modeloActividad= tbl_actividades::all();
+    $actividadesNombre = $modeloActividad->where('vc_nombre',$nombre);
+    foreach ($actividadesNombre as $key => $value) {
+    	$actividadesNombre2=$value['vc_nombre'];
+    	if ($actividadesNombre2!=null) {
+    		return $this->cargarActividadesError();
+    	}
+    }
 //Adecuación de los datos
 
 $modulo = tbl_modulos::where('vc_nombre',$nombModulo)->get();
@@ -263,7 +337,7 @@ $newActividad->save();
 //$newAct = tbl_actividades::find($idActividad);  
 //$newAct->acceso()->attach(array->['acceso_tbl_personas_i_pk_id'=>$idActividad, 'i_estado'=>0]);
 
-return view("master");
+   return $this->cargarActividades();
 
 }
 
