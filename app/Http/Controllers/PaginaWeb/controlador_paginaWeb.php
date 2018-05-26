@@ -103,6 +103,9 @@ class controlador_paginaWeb extends Controller
                     }
                    
                     $datos=usuarios::find(Session::get('Id_Usuario'));
+                    $datosInicio = ['Id'=>$datos['i_pk_id'],'Nombres'=>$datos['vc_nombre'],'Apellidos'=>$datos['vc_apellido'],'Cedula'=>$datos['vc_cedula'],'Tipo_Documento'=>$datos['tbl_tipos_documentos_i_pk_id'],'Sexo'=>$datos['tbl_sexo_i_pk_id'],'Correo_Electronico'=>$datos['vc_correo'],'Telefono'=>$datos['i_telefono'],'Celular'=>$datos['i_celular']];
+                    Session::put('Datos_Usuario_Logueado',$datosInicio);
+                    dd(Session::get('Datos_Usuario_Logueado'));
                     
                     return redirect('/usuarioIniciado');
                 }else{
@@ -123,8 +126,16 @@ class controlador_paginaWeb extends Controller
 
     }
     public function cerrarSesion(request $request){
-         Session::forget('Id_Usuario');
-        //Session::forget('Actividades_Disponibles_Login');
+
+        if(Session::has('Id_Usuario')){
+            Session::forget('Id_Usuario');
+        }
+        if(Session::has('Actividades_Inicio_Sesion')){
+            Session::forget('Actividades_Inicio_Sesion');
+        }
+        if(Session::has('Datos_Usuario_Logueado')){
+            Session::forget('Datos_Usuario_Logueado');
+        }
         return redirect('/');
 
     }
