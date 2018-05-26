@@ -93,14 +93,25 @@ class controlador_paginaWeb extends Controller
                     $actividades=tbl_acceso::find(Session::get('Id_Usuario'))->actividades;
                     $cantidadActividades=$actividades->count();
 
-                    for ($i=0; $i < $cantidadActividades ; $i++) { 
-                        $actividadesDisponibles[] = array('id_actividad' => $actividades[$i]['pivot']['tbl_actividades_i_pk_id'], 'nombre_actividad' => $actividades[$i]['vc_nombre'], 'estado_actividad_local' => $actividades[$i]['pivot']['i_estado'],'estado_actividad_global' => $actividades[$i]['i_estado'],'modulo_actividad'=>$actividades[$i]['tbl_modulos_i_fk_id']);
-                    }
-                    if ($cantidadActividades!=0) {
-                        
-                         Session::put('Actividades_Inicio_Sesion',$actividadesDisponibles);
+                    $permisos = [
+                        'Configuracion_Usuarios'=>0,
+                        'Crear_Usuario'=>0,
+                        'Asignacion_Permisos'=>0,
+                        'Crear_Actividad'=>0,
 
+                    ];
+
+                    for ($i=0; $i < $cantidadActividades ; $i++) { 
+                        
+                        foreach ($permisos as $key => $value) {
+                            if($key==$actividades[$i]['vc_nombre']){
+                                $permisos[$key]=1;
+                            }
+                        }
                     }
+
+                    Session::put('Actividades_Inicio_Sesion',$permisos);
+                    dd(Session::get('Actividades_Inicio_Sesion'));
                    
                     $datos=usuarios::find(Session::get('Id_Usuario'));
                     $datosInicio = ['Id'=>$datos['i_pk_id'],'Nombres'=>$datos['vc_nombre'],'Apellidos'=>$datos['vc_apellido'],'Cedula'=>$datos['vc_cedula'],'Tipo_Documento'=>$datos['tbl_tipos_documentos_i_pk_id'],'Sexo'=>$datos['tbl_sexo_i_pk_id'],'Correo_Electronico'=>$datos['vc_correo'],'Telefono'=>$datos['i_telefono'],'Celular'=>$datos['i_celular']];
